@@ -1096,6 +1096,225 @@ html.pr-open #bar,html.pr-open #bartog{display:none !important}
 .pr-per{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px}
 .pr-per span{font-size:13px;background:var(--paper);border-radius:999px;padding:5px 10px}
 @media (min-width:1400px) and (min-height:800px){#prac{zoom:1.3}}
+
+/* ===== Tra cứu nhanh + Sổ tay sửa chữa ===== */
+#toast{z-index:600}
+html.st-open #bar,html.st-open #bartog,html.sr-open #bar,html.sr-open #bartog{display:none !important}
+#sotay,#srch{font-family:var(--font);color:var(--ink);-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
+#sotay button,#srch button{font-family:inherit}
+#sotay svg,#srch svg{flex:0 0 auto}
+#sotay{position:fixed;inset:0;z-index:510;display:none;background:var(--paper);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;font-size:16px;line-height:1.45}
+#sotay.on{display:block}
+.sx-top{position:sticky;top:0;z-index:6;background:var(--paper)}
+.sx-h{display:flex;align-items:center;gap:12px;padding:calc(10px + env(safe-area-inset-top,0px)) 14px 10px;background:var(--night);color:#fff}
+.sx-x{all:unset;cursor:pointer;flex:0 0 42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;background:rgba(255,255,255,.12)}
+.sx-x:hover{background:rgba(255,255,255,.2)}
+.sx-ht{flex:1;min-width:0}
+.sx-ht b{display:block;font-size:18px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sx-ht small{display:block;font-size:12px;color:#9DB2CC;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sx-hb{all:unset;cursor:pointer;display:flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-radius:12px;background:var(--warm);font-weight:800;font-size:15px}
+.sx-hb svg{width:20px;height:20px}
+.sx-hb:hover{filter:brightness(1.08)}
+.sx-cats{display:flex;gap:8px;overflow-x:auto;padding:10px 14px;border-bottom:1px solid var(--line);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sx-cats::-webkit-scrollbar{display:none}
+.sx-cats button{all:unset;cursor:pointer;flex:0 0 auto;display:flex;align-items:center;gap:7px;padding:7px 13px 7px 10px;border-radius:999px;background:#fff;border:1.5px solid var(--line);font-size:14.5px;font-weight:700;color:var(--ink2);white-space:nowrap}
+.sx-cats button svg{width:18px;height:18px;color:var(--c)}
+.sx-cats button:hover{border-color:var(--c)}
+.sx-cats button.on{background:var(--c);border-color:var(--c);color:#fff}
+.sx-cats button.on svg{color:#fff}
+.sx-b{max-width:1180px;margin:0 auto;padding:16px 14px calc(40px + env(safe-area-inset-bottom,0px))}
+/* overview */
+.sx-hero{position:relative;overflow:hidden;color:#fff;border-radius:22px;padding:24px 26px 22px;background:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px) 0 0/28px 28px,linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px) 0 0/28px 28px,linear-gradient(135deg,#0D1B2E 0%,#16294A 55%,#1F4372 100%)}
+.sx-hero::after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;border:36px solid rgba(95,166,234,.12);pointer-events:none}
+.sx-tag{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:rgba(233,130,26,.2);color:#FFC46B;margin-bottom:10px}
+.sx-hero h2{margin:0 0 8px;font-size:27px;line-height:1.2;max-width:760px}
+.sx-hero p{margin:0 0 16px;color:#C5D4E6;font-size:15.5px;max-width:760px}
+.sx-sbtn{all:unset;cursor:text;box-sizing:border-box;position:relative;z-index:1;display:flex;align-items:center;gap:10px;width:100%;max-width:660px;padding:14px 16px;border-radius:14px;background:#fff;color:#7D8DA1;font-size:16px;box-shadow:0 10px 26px rgba(0,0,0,.28)}
+.sx-sbtn svg{width:22px;height:22px;color:var(--cold)}
+.sx-sbtn span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sx-quick{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.sx-quick button{all:unset;cursor:pointer;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);font-size:14px;font-weight:600;color:#EAF1FA}
+.sx-quick button:hover{background:rgba(255,255,255,.22)}
+.sx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;margin-top:16px}
+.sx-tile{display:flex;flex-direction:column;border-radius:18px;background:#fff;border:1px solid var(--line);border-top:4px solid var(--c);overflow:hidden}
+.sx-tl{all:unset;cursor:pointer;display:flex;align-items:center;gap:12px;padding:14px 16px 8px}
+.sx-tl:hover b{color:var(--c)}
+.sx-tt{display:flex;flex-direction:column;min-width:0}
+.sx-tt b{font-size:18px;line-height:1.25}
+.sx-tt em{font-style:normal;font-size:13px;color:var(--muted);font-weight:600}
+.sx-tile ul{margin:0;padding:2px 8px 12px;list-style:none;display:flex;flex-direction:column}
+.sx-tile li button{all:unset;cursor:pointer;box-sizing:border-box;display:block;width:100%;padding:5px 8px;border-radius:8px;font-size:14px;color:var(--ink2);line-height:1.35}
+.sx-tile li button::before{content:"›";color:var(--c);font-weight:900;margin-right:7px}
+.sx-tile li button:hover{background:var(--paper);color:var(--ink)}
+.sx-ico{flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:13px;background:#EEF3F8;background:color-mix(in srgb,var(--c) 13%,#fff);color:var(--c)}
+.sx-ico svg{width:24px;height:24px}
+/* category */
+.sx-ct{display:flex;align-items:center;gap:14px;margin:4px 2px 12px}
+.sx-ct h2{margin:0;font-size:24px;line-height:1.2}
+.sx-ct p{margin:2px 0 0;color:var(--muted);font-size:14px;font-weight:600}
+.sx-toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.sx-toc button{all:unset;cursor:pointer;padding:7px 12px;border-radius:10px;background:#fff;border:1px solid var(--line);font-size:14px;font-weight:600;color:var(--ink2)}
+.sx-toc button:hover{border-color:var(--c,var(--cold));color:var(--ink)}
+.sx-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:14px;scroll-margin-top:130px}
+.sx-ch{display:flex;align-items:flex-start;gap:10px;justify-content:space-between}
+.sx-ch h3{margin:0;font-size:19.5px;line-height:1.3;border-left:4px solid var(--c);padding-left:10px}
+.sx-id{flex:0 0 auto;font-size:11.5px;font-weight:800;color:var(--muted);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:2px 6px;margin-top:2px}
+.sx-note{margin:10px 0 0;padding:10px 12px;border-radius:12px;background:#FFF7E6;border-left:4px solid var(--gold);font-size:14.5px;color:#5A4A1E;line-height:1.5}
+.sx-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.sx-f{flex:1 1 260px;min-width:0;display:flex;align-items:center;gap:8px;padding:0 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);height:44px;box-sizing:border-box;cursor:text}
+.sx-f svg{width:18px;height:18px;color:var(--muted)}
+.sx-f input{all:unset;flex:1;min-width:0;width:100%;font-size:16px;color:var(--ink)}
+.sx-f input::placeholder{color:#8C9BAB}
+.sx-f input::-webkit-search-cancel-button{cursor:pointer}
+.sx-f:focus-within{border-color:var(--cold);background:#fff}
+.sx-tb2{all:unset;cursor:pointer;height:44px;padding:0 14px;border-radius:12px;border:1.5px solid var(--line);font-size:14px;font-weight:700;color:var(--ink2);display:flex;align-items:center;box-sizing:border-box}
+.sx-tb2:hover{border-color:var(--c)}
+.sx-cnt{font-size:13px;color:var(--muted);font-weight:700;white-space:nowrap}
+.sx-body{margin-top:12px}
+.sx-tools+.sx-body{margin-top:0}
+.sx-src{margin:12px 0 0;font-size:12.5px;color:var(--muted);line-height:1.5}
+.sx-none{margin:6px 0;padding:14px;border-radius:12px;background:var(--paper);color:var(--muted);font-size:14.5px}
+/* tables */
+.sx-tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:12px}
+.sx-t{width:100%;border-collapse:collapse;font-size:14.5px;line-height:1.5}
+.sx-t th{background:#EEF3F8;color:var(--ink2);text-align:left;font-size:13px;font-weight:800;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:bottom;line-height:1.3}
+.sx-t td{padding:9px 12px;border-bottom:1px solid #E7EEF5;vertical-align:top}
+.sx-t tbody tr:last-child td{border-bottom:0}
+.sx-t tbody tr:nth-child(even) td{background:#FAFCFE}
+.sx-t td:first-child{font-weight:700;color:var(--ink)}
+.sx-t.cp th,.sx-t.cp td{text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums}
+.sx-t.cp th:first-child,.sx-t.cp td:first-child{text-align:left;position:sticky;left:0;z-index:1;background:#F4F7FA;box-shadow:1px 0 0 var(--line)}
+.sx-t.cp tbody tr:nth-child(even) td:first-child{background:#EEF3F8}
+#sotay mark,#srch mark{background:#FFE58A;color:inherit;border-radius:3px;padding:0 1px}
+.sx-t tr.hit td,.sx-steps li.hit,.sx-acc summary.hit,.sx-ch h3.hit{animation:sxhit 3s ease-out}
+@keyframes sxhit{0%,45%{background-color:#FFE7A3}100%{background-color:transparent}}
+.sx-t tr,.sx-steps li,.sx-acc{scroll-margin-top:140px;scroll-margin-bottom:40px}
+/* accordion groups */
+.sx-acc{border:1px solid var(--line);border-radius:14px;margin-bottom:8px;background:#fff;overflow:hidden}
+.sx-acc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:15.5px;-webkit-user-select:none;user-select:none}
+.sx-acc>summary::-webkit-details-marker{display:none}
+.sx-acc>summary b{flex:1;min-width:0;line-height:1.35}
+.sx-acc>summary em{font-style:normal;font-size:12.5px;font-weight:700;color:var(--muted);white-space:nowrap}
+.sx-acc>summary::after{content:"";flex:0 0 auto;width:8px;height:8px;border-right:2.5px solid var(--muted);border-bottom:2.5px solid var(--muted);transform:rotate(45deg);margin:0 4px 4px 2px;transition:transform .2s}
+.sx-acc[open]>summary::after{transform:rotate(-135deg);margin:4px 4px 0 2px}
+.sx-acc>summary:hover{background:#F7FAFD}
+.sx-acc[open]>summary{border-bottom:1px solid var(--line);background:#F4F8FC;background:color-mix(in srgb,var(--c) 6%,#fff)}
+.sx-n{flex:0 0 auto;min-width:28px;height:28px;padding:0 4px;box-sizing:border-box;border-radius:8px;background:var(--c);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.sx-in>.sx-tw{border:0;border-radius:0}
+/* procedure steps */
+.sx-steps{list-style:none;margin:0;padding:14px 16px 4px}
+.sx-steps li{position:relative;display:flex;gap:12px;padding:0 6px 14px 0;font-size:15px;line-height:1.55;border-radius:10px}
+.sx-steps li::after{content:"";position:absolute;left:14px;top:32px;bottom:2px;width:2px;background:#D8E2EC;background:color-mix(in srgb,var(--c) 28%,#fff)}
+.sx-steps li:last-child::after{display:none}
+.sx-sn{flex:0 0 30px;height:30px;border-radius:50%;background:var(--c);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
+.sx-sc{flex:1;min-width:0;padding-top:3px}
+.sx-w{margin-top:6px;padding:7px 10px;border-radius:10px;background:#FFF4E5;border-left:3px solid var(--warm);font-size:14px;color:#6B4513;line-height:1.45}
+.sx-w.i{background:#EEF4FB;border-left-color:var(--cold);color:var(--ink2)}
+.sx-foot{margin-top:18px;padding:14px 16px;border-radius:14px;background:#fff;border:1px dashed #C3D2E1;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;font-size:13.5px;color:var(--ink2)}
+.sx-srcinfo{flex:1 1 300px}
+.sx-foot button{all:unset;cursor:pointer;padding:8px 14px;border-radius:10px;background:var(--ink);color:#fff;font-weight:700;font-size:13.5px}
+.sx-foot button[disabled]{opacity:.5;cursor:default}
+.sx-srcmsg{flex:1 1 100%;color:var(--cold);font-weight:600}
+.sx-srcmsg:empty{display:none}
+.sx-foot small{flex:1 1 100%;color:var(--muted);font-size:12px}
+/* ---- search ---- */
+#srch{position:fixed;inset:0;z-index:520;display:none;justify-content:center;align-items:flex-start;background:rgba(6,12,22,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);font-size:16px;line-height:1.45}
+#srch.on{display:flex}
+.sr-p{margin-top:7vh;width:min(880px,94vw);max-height:84vh;display:flex;flex-direction:column;background:#fff;border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.45);overflow:hidden;animation:srIn .22s var(--te)}
+@keyframes srIn{from{opacity:0;transform:translateY(-10px) scale(.985)}to{opacity:1;transform:none}}
+.sr-top,.sr-scope,.sr-foot{flex:0 0 auto}
+.sr-top{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.sr-top>svg{width:24px;height:24px;color:var(--cold)}
+.sr-top input{all:unset;flex:1;min-width:0;font-size:19px;font-weight:600;color:var(--ink)}
+.sr-top input::placeholder{color:#93A2B4;font-weight:500}
+.sr-top input::-webkit-search-cancel-button{display:none;-webkit-appearance:none}
+.sr-clr{all:unset;cursor:pointer;flex:0 0 30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--muted);background:var(--paper);font-size:13px}
+.sr-close{all:unset;cursor:pointer;padding:6px 11px;border-radius:9px;border:1px solid var(--line);font-size:13px;font-weight:700;color:var(--muted)}
+.sr-close:hover{color:var(--ink);border-color:#B9C8D8}
+.sr-scope{display:flex;gap:6px;padding:10px 16px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.sr-scope::-webkit-scrollbar{display:none}
+.sr-scope button{all:unset;cursor:pointer;padding:6px 13px;border-radius:999px;font-size:14px;font-weight:700;color:var(--ink2);background:var(--paper);white-space:nowrap}
+.sr-scope button i{font-style:normal;font-weight:800;margin-left:6px;color:var(--muted)}
+.sr-scope button i:empty{display:none}
+.sr-scope button.on{background:var(--ink);color:#fff}
+.sr-scope button.on i{color:#9DB2CC}
+.sr-list{flex:1;min-height:120px;overflow-y:auto;padding:8px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.sr-it{all:unset;cursor:pointer;box-sizing:border-box;display:block;width:100%;padding:11px 12px;border-radius:12px;border:1.5px solid transparent}
+.sr-it:hover{background:#F3F7FB}
+.sr-it.sel{background:#EAF2FC;border-color:#BFD6F2}
+.sr-k{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;padding:2px 7px;border-radius:6px;margin-right:8px;vertical-align:2px}
+.sr-k.sl{background:#E3EEFB;color:var(--cold)}
+.sr-k.hb{background:#F6E7DC;color:var(--copper)}
+.sr-it>b{font-size:16px;line-height:1.35}
+.sr-c{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sr-s{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:14px;color:var(--ink2);margin-top:4px;line-height:1.45}
+.sr-more{all:unset;cursor:pointer;display:block;margin:6px auto 10px;padding:9px 18px;border-radius:999px;background:var(--paper);font-weight:700;font-size:14px;color:var(--ink2)}
+.sr-foot{display:flex;flex-wrap:wrap;gap:6px 16px;padding:9px 16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);background:#FAFCFE}
+.sr-foot b{color:var(--ink2)}
+.sr-empty{padding:10px 8px 14px}
+.sr-empty h4{margin:6px 4px 10px;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.sr-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.sr-chips button{all:unset;cursor:pointer;padding:7px 13px;border-radius:999px;border:1.5px solid var(--line);font-size:14px;font-weight:600;color:var(--ink2)}
+.sr-chips button:hover{border-color:var(--cold);color:var(--cold)}
+.sr-book{all:unset;cursor:pointer;box-sizing:border-box;display:flex;align-items:center;gap:14px;width:100%;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,#0D1B2E,#1F4372);color:#fff;margin-top:4px}
+.sr-book svg{width:30px;height:30px;color:#FFC46B}
+.sr-book b{display:block;font-size:16px}
+.sr-book small{display:block;font-size:13px;color:#C5D4E6;margin-top:2px;line-height:1.4}
+.sr-no{margin:10px 6px 6px;font-size:15.5px}
+.sr-tip{margin:0 6px;color:var(--muted);font-size:14px}
+.sr-lk{all:unset;cursor:pointer;color:var(--cold);font-weight:700;text-decoration:underline}
+/* flash the matched text on a slide */
+.sr-hit{animation:srhit 2.6s ease-out;border-radius:8px}
+@keyframes srhit{0%,55%{outline:6px solid rgba(226,167,46,.95);outline-offset:6px;box-shadow:0 0 0 14px rgba(255,229,138,.45)}100%{outline:6px solid rgba(226,167,46,0);outline-offset:6px;box-shadow:0 0 0 14px rgba(255,229,138,0)}}
+.sr-hit-svg{animation:srhitsvg 2.6s ease-out;paint-order:stroke}
+@keyframes srhitsvg{0%,55%{stroke:#F2B632;stroke-width:7px}100%{stroke:rgba(242,182,50,0);stroke-width:7px}}
+/* entry buttons */
+#bar [data-x=find]{color:#FFC46B}
+#bar [data-x=book]{color:#FFB08A}
+.sx-slide-k{display:inline-flex;align-items:center;gap:8px}
+@media (max-width:700px){
+  .sx-h{gap:8px;padding-left:10px;padding-right:10px}
+  .sx-ht b{font-size:16px}
+  .sx-hb{padding:0 12px}
+  .sx-hb span{display:none}
+  .sx-cats{padding:8px 10px}
+  .sx-b{padding:12px 10px calc(40px + env(safe-area-inset-bottom,0px))}
+  .sx-hero{padding:18px 16px 16px;border-radius:18px}
+  .sx-hero h2{font-size:21px}
+  .sx-hero p{font-size:14.5px}
+  .sx-grid{grid-template-columns:1fr}
+  .sx-card{padding:14px 12px;border-radius:16px}
+  .sx-ch h3{font-size:17.5px}
+  .sx-ct h2{font-size:21px}
+  /* rows become cards on phones (except short numeric tables) */
+  .sx-tw:not(.cp){border:0;border-radius:0;overflow:visible}
+  .sx-t:not(.cp) thead{display:none}
+  .sx-t:not(.cp),.sx-t:not(.cp) tbody,.sx-t:not(.cp) tr,.sx-t:not(.cp) td{display:block;width:auto}
+  .sx-t:not(.cp) tr{border:1px solid var(--line);border-radius:14px;padding:9px 12px 10px;margin-bottom:8px;background:#fff}
+  .sx-t:not(.cp) tbody tr:nth-child(even) td,.sx-t:not(.cp) td{background:none;border:0;padding:2px 0}
+  .sx-t:not(.cp) td:empty{display:none}
+  .sx-t:not(.cp) td::before{content:attr(data-l);display:block;font-size:11.5px;font-weight:800;color:var(--muted);letter-spacing:.02em;margin-top:6px}
+  .sx-t:not(.cp) td:first-child::before{display:none}
+  .sx-t:not(.cp) td:first-child{font-size:15.5px;color:var(--ink)}
+  .sx-t:not(.cp) tr.hit{animation:sxhit 3s ease-out}
+  .sx-in{padding:8px}
+  .sx-in>.sx-tw:not(.cp){padding:0}
+  .sx-in .sx-t:not(.cp) tr:last-child{margin-bottom:0}
+  .sx-steps{padding:10px 8px 2px}
+  .sx-acc>summary{padding:10px 12px;font-size:15px}
+  #srch{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none}
+  .sr-p{margin:0;width:100%;max-height:none;height:100%;border-radius:0;box-shadow:none;animation:none}
+  .sr-top{padding:calc(10px + env(safe-area-inset-top,0px)) 12px 10px;gap:8px}
+  .sr-top input{font-size:17px}
+  .sr-scope{padding:8px 12px}
+  .sr-foot{display:none}
+  .sr-list{padding:6px 6px calc(20px + env(safe-area-inset-bottom,0px))}
+}
+@media (min-width:1400px) and (min-height:800px){#sotay{zoom:1.22}.sr-p{width:min(1040px,88vw)}.sr-top input{font-size:22px}.sr-it>b{font-size:18px}.sr-s{font-size:15.5px}.sr-c{font-size:13.5px}.sr-chips button,.sr-scope button{font-size:15.5px}}
+/* slide "Sổ tay và tra cứu" */
+.sx-demo{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:16px;background:#fff;border:2px solid var(--cold);font-size:22px;color:#7D8DA1;margin:0 0 18px;box-shadow:0 8px 20px rgba(30,107,208,.14)}
+.sx-demo svg{width:30px;height:30px;color:var(--cold);flex:0 0 auto}
+.ms-acts button[data-m=sotay] svg{color:#fff}
 </style></head>
 <body><svg width="0" height="0" style="position:absolute;width:0;height:0" aria-hidden="true"><defs>
 <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#13233A"/></marker>
@@ -1188,8 +1407,8 @@ html.pr-open #bar,html.pr-open #bartog{display:none !important}
 <div class="g g2">
  <div class="col">
   <h3 class="h3">Điều khiển bài giảng</h3>
-  <ul class="ls sm"><li><b>→ / Space / bút trình chiếu</b>: hiện bước tiếp theo hoặc sang slide mới.</li><li><b>M</b>: mục lục, nhảy tới bất kỳ bài nào.</li><li><b>F</b>: toàn màn hình trên TV 16:9.</li><li>Nút <b>•••</b> ở góc phải dưới: bấm để hiện hoặc ẩn thanh công cụ.</li><li>Chạm vào ảnh để phóng to; chạm vào thiết bị trên sơ đồ để xem giải thích.</li></ul>
-  <div class="co good"><b class="cot">Học sinh tự học ở nhà</b>Mở trên điện thoại, bài giảng tự chuyển sang <b>chế độ tự học</b>: cuộn dọc, vuốt trái/phải để chuyển slide, nút ☰ mở mục lục có đánh dấu bài đã học, nút phóng to sơ đồ, mục <b>Ôn luyện trắc nghiệm</b> có chấm điểm.</div>
+  <ul class="ls sm"><li><b>→ / Space / bút trình chiếu</b>: hiện bước tiếp theo hoặc sang slide mới.</li><li><b>M</b>: mục lục · <b>K</b>: tìm kiếm nhanh · <b>N</b>: Sổ tay sửa chữa.</li><li><b>F</b>: toàn màn hình trên TV 16:9.</li><li>Nút <b>•••</b> ở góc phải dưới: bấm để hiện hoặc ẩn thanh công cụ.</li><li>Chạm vào ảnh để phóng to; chạm vào thiết bị trên sơ đồ để xem giải thích.</li></ul>
+  <div class="co good"><b class="cot">Học sinh tự học ở nhà</b>Mở trên điện thoại, bài giảng tự chuyển sang <b>chế độ tự học</b>: cuộn dọc, vuốt trái/phải để chuyển slide, nút ☰ mở mục lục có đánh dấu bài đã học, nút 🔍 <b>tìm kiếm</b>, nút <b>Sổ tay sửa chữa</b>, mục <b>Ôn luyện trắc nghiệm</b> có chấm điểm.</div>
  </div>
  <div class="col">
   <h3 class="h3">Tương tác với lớp</h3>
@@ -2492,6 +2711,25 @@ html.pr-open #bar,html.pr-open #bartog{display:none !important}
   <ol class="ol sm okl"><li>Giáo viên mở đề trong Google Sheet (cột “Mở thi”).</li><li>Học sinh mở link thi, chọn lớp, họ tên và đề; làm bài trong thời gian quy định.</li><li>Nộp bài: máy tự chấm điểm và gửi kết quả về Google Sheet của giáo viên.</li></ol>
   <div class="btns"><button class="btn ok exam-link" onclick="window.MD19_EXAM_URL?window.open(window.MD19_EXAM_URL,'_blank'):window.__toast('Giáo viên chưa gắn link bài thi')">Vào thi chính thức</button></div>
  </div>
+</div></div></section><section class="slide " id="sotay-info" data-group="Ôn tập – Kiểm tra – Tài liệu" data-title="Sổ tay sửa chữa và tra cứu nhanh" ><header class="sh"><span class="au">Tác giả: Huỳnh Hào Kiệt - Trường Trung cấp nghề Diên Khánh</span><span class="tg">MĐ 19 – Tra cứu và Sổ tay</span></header><h2 class="st">Sổ tay sửa chữa và tra cứu nhanh</h2><p class="ss">Tra lỗi, thông số, quy trình ngay trên điện thoại – khi học thực hành và khi đi sửa máy</p><div class="body ">
+<div class="g" style="grid-template-columns:1fr 1.2fr 1fr;gap:28px">
+ <div class="panel col top">
+  <span class="tagline">Tìm kiếm nhanh</span>
+  <p class="t24" style="margin:0 0 16px">Gõ điều cần tra, <b>có dấu hay không dấu đều được</b>. Chương trình tìm trong toàn bộ bài giảng và Sổ tay, bấm kết quả để mở đúng chỗ.</p>
+  <div class="sx-demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg><span>kem lanh · E5 · R32</span></div>
+  <ul class="ls sm"><li>Máy tính: phím <b>K</b> hoặc <b>/</b></li><li>Điện thoại: nút 🔍 trên thanh trên cùng</li></ul>
+  <div class="btns"><button class="btn cold" onclick="window.__search&&window.__search()">Mở tìm kiếm</button></div>
+ </div>
+ <div class="panel col top">
+  <span class="tagline hot">Sổ tay bảo dưỡng, sửa chữa</span>
+  <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:6px"><div class="big-num" style="color:var(--hot)" data-stn="r">439</div><p class="t24" style="margin:0">dòng tra cứu trong <b data-stn="t">22</b> bảng</p></div>
+  <ul class="ls sm"><li><b>Hư hỏng</b>: hiện tượng – nguyên nhân – cách khắc phục</li><li><b>Mã lỗi</b> Daikin, Panasonic, LG, Samsung</li><li><b>Gas</b>: áp suất chuẩn, bảng P–T, nạp thêm theo ống; <b>giá trị cân cáp</b></li><li><b>Máy nén</b>: công suất, dòng làm việc, tụ, điện trở cuộn dây</li><li><b>Lắp đặt, cảm biến</b>, quy đổi đơn vị và công thức</li><li><b>20 quy trình</b>: hút chân không, nạp gas, cân cáp, kiểm tra máy nén…</li></ul>
+  <div class="btns"><button class="btn hot" onclick="window.__sotay&&window.__sotay()">Mở Sổ tay</button></div>
+ </div>
+ <div class="panel col top">
+  <span class="tagline ok">Giáo viên cập nhật</span>
+  <ol class="ol sm okl"><li>Mỗi bảng của Sổ tay là một trang <b>ST01, ST02…</b> trong Google Sheet của môn học; trang <b>SoTay</b> là mục lục.</li><li>Sửa, thêm dòng hoặc thêm bảng mới ngay trên trang tính – không cần sửa code.</li><li>Bài giảng tự tải Sổ tay mới khi mở lại; không có mạng thì dùng bản đã lưu trên máy.</li></ol>
+ </div>
 </div></div></section><section class="slide qslide" data-group="Ôn tập – Kiểm tra – Tài liệu" data-title="Trắc nghiệm: Tổng ôn tập mô đun MĐ 19" ><header class="sh"><span class="au">Tác giả: Huỳnh Hào Kiệt - Trường Trung cấp nghề Diên Khánh</span><span class="tg">MĐ 19 – Ôn tập và kiểm tra</span></header><div class="body tall"><div class="quiz" data-quiz="final" data-title="Tổng ôn tập mô đun MĐ 19"></div></div></section><section class="slide " data-group="Ôn tập – Kiểm tra – Tài liệu" data-title="Tài liệu tham khảo" ><header class="sh"><span class="au">Tác giả: Huỳnh Hào Kiệt - Trường Trung cấp nghề Diên Khánh</span><span class="tg">MĐ 19 – Ôn tập và kiểm tra</span></header><h2 class="st">Tài liệu tham khảo</h2><div class="body ">
 <div class="g g2">
  <div class="col">
@@ -2509,13 +2747,13 @@ html.pr-open #bar,html.pr-open #bartog{display:none !important}
 <div class="who endw" style="position:absolute;left:100px;bottom:120px;font-size:28px;color:#C7D6E8;line-height:1.5"><b style="color:#fff;font-size:32px">Huỳnh Hào Kiệt</b><br>Trường Trung cấp nghề Diên Khánh</div>
 <div class="scene" data-sim="model"><div class="rig"></div></div></section>
 </div><canvas id="ink"></canvas><div id="laser"></div><div id="foot"><div class="pipe"><i></i></div><div class="num"></div></div></div></div>
-<div id="bar"><button data-a="prev" data-tip="Lùi (←)" aria-label="Lùi (←)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button><span class="cnt"></span><button data-a="next" data-tip="Tiến (→, Space)" aria-label="Tiến (→, Space)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button><span class="sep"></span><button data-a="menu" data-tip="Mục lục (M)" aria-label="Mục lục (M)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></button><button data-a="pen" data-tip="Bút vẽ (P)" aria-label="Bút vẽ (P)" id="b-pen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-1 11-11-3-3L5 16l-1 4z"/><path d="M14 6l3 3"/></svg></button><button data-a="laser" data-tip="Bút laser (L)" aria-label="Bút laser (L)" id="b-laser"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></button><button data-a="timer" data-tip="Đồng hồ đếm ngược (T)" aria-label="Đồng hồ đếm ngược (T)" id="b-timer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg></button><button data-a="pick" data-tip="Gọi tên ngẫu nhiên (R)" aria-label="Gọi tên ngẫu nhiên (R)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><path d="M17 4l1.2 2.4L21 7l-2 1.8.5 2.7L17 10.3l-2.5 1.2.5-2.7L13 7l2.8-.6z"/></svg></button><button data-a="score" data-tip="Bảng điểm đội (S)" aria-label="Bảng điểm đội (S)" id="b-score"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0z"/><path d="M17 5h3v2a3 3 0 01-3 3M7 5H4v2a3 3 0 003 3"/></svg></button><button data-a="black" data-tip="Màn hình đen (B)" aria-label="Màn hình đen (B)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="13" rx="2"/><path d="M3 5l18 13"/></svg></button><span class="sep"></span><button data-a="settings" data-tip="Cài đặt chuyển cảnh" aria-label="Cài đặt chuyển cảnh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg></button><button data-a="help" data-tip="Phím tắt (H)" aria-label="Phím tắt (H)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 015 0c0 1.7-2.5 2-2.5 4M12 17h.01"/></svg></button><button data-a="full" data-tip="Toàn màn hình (F)" aria-label="Toàn màn hình (F)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button></div><button id="bartog" aria-label="Hiện/ẩn thanh công cụ" aria-expanded="false" title="Hiện/ẩn thanh công cụ"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="19" cy="12" r="2.2"/></svg></button>
+<div id="bar"><button data-a="prev" data-tip="Lùi (←)" aria-label="Lùi (←)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button><span class="cnt"></span><button data-a="next" data-tip="Tiến (→, Space)" aria-label="Tiến (→, Space)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button><span class="sep"></span><button data-x="find" data-tip="Tìm kiếm nhanh (K)" aria-label="Tìm kiếm nhanh (K)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg></button><button data-x="book" data-tip="Sổ tay sửa chữa (N)" aria-label="Sổ tay sửa chữa (N)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v17H6.5A2.5 2.5 0 004 21.5z"/><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M9 7h7M9 10.5h5"/></svg></button><button data-a="menu" data-tip="Mục lục (M)" aria-label="Mục lục (M)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></button><button data-a="pen" data-tip="Bút vẽ (P)" aria-label="Bút vẽ (P)" id="b-pen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-1 11-11-3-3L5 16l-1 4z"/><path d="M14 6l3 3"/></svg></button><button data-a="laser" data-tip="Bút laser (L)" aria-label="Bút laser (L)" id="b-laser"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></button><button data-a="timer" data-tip="Đồng hồ đếm ngược (T)" aria-label="Đồng hồ đếm ngược (T)" id="b-timer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg></button><button data-a="pick" data-tip="Gọi tên ngẫu nhiên (R)" aria-label="Gọi tên ngẫu nhiên (R)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><path d="M17 4l1.2 2.4L21 7l-2 1.8.5 2.7L17 10.3l-2.5 1.2.5-2.7L13 7l2.8-.6z"/></svg></button><button data-a="score" data-tip="Bảng điểm đội (S)" aria-label="Bảng điểm đội (S)" id="b-score"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0z"/><path d="M17 5h3v2a3 3 0 01-3 3M7 5H4v2a3 3 0 003 3"/></svg></button><button data-a="black" data-tip="Màn hình đen (B)" aria-label="Màn hình đen (B)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="13" rx="2"/><path d="M3 5l18 13"/></svg></button><span class="sep"></span><button data-a="settings" data-tip="Cài đặt chuyển cảnh" aria-label="Cài đặt chuyển cảnh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg></button><button data-a="help" data-tip="Phím tắt (H)" aria-label="Phím tắt (H)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 015 0c0 1.7-2.5 2-2.5 4M12 17h.01"/></svg></button><button data-a="full" data-tip="Toàn màn hình (F)" aria-label="Toàn màn hình (F)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button></div><button id="bartog" aria-label="Hiện/ẩn thanh công cụ" aria-expanded="false" title="Hiện/ẩn thanh công cụ"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="19" cy="12" r="2.2"/></svg></button>
 <div id="penbar"><button data-c="#E0262B" class="on" aria-label="Đỏ"></button><button data-c="#1E6BD0" aria-label="Xanh dương"></button><button data-c="#24935F" aria-label="Xanh lá"></button><button data-c="#E9A21A" aria-label="Vàng"></button><button data-c="#13233A" aria-label="Đen"></button><button class="tx" id="pen-hl">Tô sáng</button><button class="tx" id="pen-undo">Hoàn tác</button><button class="tx" id="pen-clear">Xóa hết</button><button class="tx" id="pen-off">Tắt bút</button></div>
 <div id="timer"><div class="ring"><svg viewBox="0 0 84 84"><circle cx="42" cy="42" r="36" stroke="rgba(255,255,255,.15)" stroke-width="7" fill="none"/><circle class="arc" cx="42" cy="42" r="36" stroke="#5FD39A" stroke-width="7" fill="none" stroke-linecap="round"/></svg><div class="tv">1:00</div></div><div class="tb"><button data-t="15">15s</button><button data-t="30">30s</button><button data-t="60">1 phút</button><button data-t="120">2 phút</button><button data-t="180">3 phút</button><button data-t="300">5 phút</button><button data-t="600">10 phút</button><button data-t="go">Chạy</button><button data-t="x">Đóng</button></div></div>
 <div id="score"></div>
 <div id="black">Nhấn B hoặc chạm để tiếp tục</div>
 <div id="toast"></div>
-<div class="ov" id="menu"><div class="dlg"><button class="x" aria-label="Đóng">×</button><h2>Mục lục bài giảng</h2><div class="mn-acts"><button class="btn" onclick="document.querySelector('#menu').classList.remove('on');window.__openPractice()">Ôn luyện trắc nghiệm (ngân hàng câu hỏi)</button><button class="btn ok mn-exam" onclick="window.open(window.MD19_EXAM_URL,'_blank')">Vào thi chính thức</button><button class="btn ghost" onclick="__setView('m');document.querySelector('#menu').classList.remove('on')">Chế độ tự học (điện thoại)</button></div><div class="list"></div></div></div>
+<div class="ov" id="menu"><div class="dlg"><button class="x" aria-label="Đóng">×</button><h2>Mục lục bài giảng</h2><div class="mn-acts"><button class="btn" onclick="document.querySelector('#menu').classList.remove('on');window.__openPractice()">Ôn luyện trắc nghiệm (ngân hàng câu hỏi)</button><button class="btn hot" onclick="document.querySelector('#menu').classList.remove('on');window.__sotay&&window.__sotay()">Sổ tay sửa chữa (N)</button><button class="btn cold" onclick="document.querySelector('#menu').classList.remove('on');window.__search&&window.__search()">Tìm kiếm nhanh (K)</button><button class="btn ok mn-exam" onclick="window.open(window.MD19_EXAM_URL,'_blank')">Vào thi chính thức</button><button class="btn ghost" onclick="__setView('m');document.querySelector('#menu').classList.remove('on')">Chế độ tự học (điện thoại)</button></div><div class="list"></div></div></div>
 <div class="ov" id="zoom"><div class="dlg"><img alt=""><div class="cap"></div></div></div>
 <div class="ov" id="pick"><div class="dlg"><button class="x" aria-label="Đóng">×</button><h2>Gọi tên ngẫu nhiên</h2><div class="name">—</div><div class="opts"><label>Sĩ số lớp <input type="number" id="pk-n" min="1" max="99" value="30"></label><label><input type="checkbox" id="pk-nore" checked> Không gọi lặp lại</label><button class="btn" id="pk-go">Quay chọn</button><button class="btn ghost sm" id="pk-reset">Làm mới</button></div><p style="color:#5B6B80;margin:8px 0 6px">Hoặc dán danh sách tên học sinh (mỗi dòng một tên). Để trống thì gọi theo số thứ tự.</p><textarea placeholder="Nguyễn Văn A&#10;Trần Thị B&#10;..."></textarea></div></div>
 <div class="ov" id="help"><div class="dlg"><button class="x" aria-label="Đóng">×</button><h2>Phím tắt khi trình chiếu</h2><div class="hlp">
@@ -2524,10 +2762,10 @@ html.pr-open #bar,html.pr-open #bartog{display:none !important}
 <div><span class="kbd">P</span> Bút vẽ lên slide · <span class="kbd">C</span> xóa nét</div><div><span class="kbd">L</span> Bút chỉ laser</div>
 <div><span class="kbd">T</span> Đồng hồ đếm ngược</div><div><span class="kbd">R</span> Gọi tên học sinh ngẫu nhiên</div>
 <div><span class="kbd">S</span> Bảng điểm thi đua theo đội</div><div><span class="kbd">B</span>/<span class="kbd">W</span> Màn hình đen/trắng</div>
-<div><span class="kbd">1</span>–<span class="kbd">4</span> hoặc <span class="kbd">A</span>–<span class="kbd">D</span> Chọn đáp án trắc nghiệm</div><div><span class="kbd">O</span> Ôn luyện trắc nghiệm theo bài</div><div><span class="kbd">Home</span>/<span class="kbd">End</span> Slide đầu/cuối</div>
+<div><span class="kbd">1</span>–<span class="kbd">4</span> hoặc <span class="kbd">A</span>–<span class="kbd">D</span> Chọn đáp án trắc nghiệm</div><div><span class="kbd">O</span> Ôn luyện trắc nghiệm theo bài</div><div><span class="kbd">K</span> hoặc <span class="kbd">/</span> Tìm kiếm nhanh</div><div><span class="kbd">N</span> Sổ tay sửa chữa điều hòa</div><div><span class="kbd">Home</span>/<span class="kbd">End</span> Slide đầu/cuối</div>
 <div><span class="kbd">Esc</span> Đóng cửa sổ, tắt bút, ẩn thanh công cụ</div><div>Nút <b>•••</b> góc phải dưới: hiện/ẩn thanh công cụ</div><div>Chạm ảnh để phóng to · Vuốt trái/phải trên màn hình cảm ứng</div>
 </div><p style="color:#5B6B80;margin-top:16px">Khi nhúng trên Google Sites: bấm vào slide một lần để bàn phím hoạt động.</p></div></div>
-<div id="mtop"><button id="m-menu" aria-label="Mục lục bài học"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></button><div class="mt-t"><b>MĐ 19</b><span></span></div><button id="m-full" aria-label="Mở toàn màn hình"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button></div>
+<div id="mtop"><button id="m-menu" aria-label="Mục lục bài học"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></button><div class="mt-t"><b>MĐ 19</b><span></span></div><button id="m-find" aria-label="Tìm kiếm nhanh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg></button><button id="m-book" aria-label="Sổ tay sửa chữa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v17H6.5A2.5 2.5 0 004 21.5z"/><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M9 7h7M9 10.5h5"/></svg></button><button id="m-full" aria-label="Mở toàn màn hình"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button></div>
 <div id="mnav"><button id="m-prev" aria-label="Lùi lại"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button><div class="mn-c"><div class="mn-t"></div><div class="mn-p"><i></i></div></div><button id="m-next" aria-label="Tiếp theo">Tiếp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button></div>
 <div id="msheet"></div>
 <div id="mview"><div class="mv-top"><span>Dùng hai ngón tay để phóng to, kéo để di chuyển · chạm hai lần để phóng nhanh</span><button class="mv-rot" aria-label="Xoay hình">⟳</button><button class="mv-x" aria-label="Đóng">✕</button></div><div class="mv-area"><div class="mv-c"></div></div></div>
@@ -2693,6 +2931,7 @@ function syncBank(fresh,report){
   if(!sheetURL()){if(report)toast('Chưa gắn link Google Sheet – đang dùng câu hỏi có sẵn trong file');renderBankInfo();return Promise.resolve(false)}
   if(report)toast('Đang tải câu hỏi từ Google Sheet…');
   return loadSheet(fresh).then(d=>{
+    try{document.dispatchEvent(new CustomEvent('md19feed',{detail:d}))}catch(e){}
     const b=d&&d.ok?validBank(d.bank):null;
     if(!b||!b.length){BINFO.err=true;renderBankInfo();if(report)toast('Không tải được câu hỏi từ Google Sheet – đang dùng bộ câu hỏi đã lưu');return false}
     const now=Date.now();LS.set(BKEY,{t:now,bank:b});
@@ -2705,7 +2944,7 @@ function bankText(){
   const n=BINFO.n+' câu hỏi';
   if(BINFO.src==='sheet')return 'Đang dùng '+n+' từ Google Sheet (cập nhật lúc '+fmtT(BINFO.t)+').';
   if(BINFO.src==='cache')return 'Đang dùng '+n+' tải từ Google Sheet lúc '+fmtT(BINFO.t)+(BINFO.err?' – lần này chưa kết nối được.':'.');
-  return 'Đang dùng '+n+' có sẵn trong file'+(sheetURL()?(BINFO.err?' – chưa kết nối được Google Sheet.':'.'):' – chưa gắn link Google Sheet (dòng 7 của file).');
+  return 'Đang dùng '+n+' có sẵn trong file'+(sheetURL()?(BINFO.err?' – chưa kết nối được Google Sheet.':'.'):' – chưa gắn link Google Sheet (dòng 8 của file).');
 }
 function renderBankInfo(){$$('.bk-info').forEach(e=>e.textContent=bankText())}
 function renderBankStats(){
@@ -3272,6 +3511,8 @@ const ICO={
   exam:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>',
   tv:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
   full:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>',
+  book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v17H6.5A2.5 2.5 0 004 21.5z"/><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M9 7h7M9 10.5h5"/></svg>',
+  find:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>',
   reset:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 109-9 9.7 9.7 0 00-6.7 2.8L3 8"/><path d="M3 3v5h5"/></svg>'
 };
 function esc(t){return String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
@@ -3282,7 +3523,8 @@ function mSheet(){
   if(last&&last!==cur&&slides[last])h+='<button class="ms-cont" data-go="'+last+'"><small>Tiếp tục học</small><b>Slide '+(last+1)+': '+esc(slides[last].dataset.title||'')+'</b></button>';
   h+='<div class="ms-acts"><button class="wide" data-m="prac">'+ICO.prac+'<span>Ôn luyện trắc nghiệm<br><small style="font-weight:600;opacity:.8">Làm đề ngẫu nhiên theo từng bài, có chấm điểm</small></span></button>';
   if(EX)h+='<button class="wide" data-m="exam" style="background:var(--leaf);border-color:var(--leaf)">'+ICO.exam+'<span>Vào thi chính thức<br><small style="font-weight:600;opacity:.85">Theo lịch giáo viên mở đề</small></span></button>';
-  h+='<button data-m="full">'+ICO.full+'<span>Mở toàn màn hình</span></button><button data-m="tv">'+ICO.tv+'<span>Chế độ trình chiếu</span></button></div>';
+  h+='<button class="wide" data-m="sotay" style="background:var(--copper);border-color:var(--copper)">'+ICO.book+'<span>Sổ tay sửa chữa điều hòa<br><small style="font-weight:600;opacity:.9">Lỗi – nguyên nhân – khắc phục, mã lỗi, gas, cân cáp, quy trình</small></span></button>';
+  h+='<button data-m="find">'+ICO.find+'<span>Tìm kiếm nhanh</span></button><button data-m="full">'+ICO.full+'<span>Mở toàn màn hình</span></button><button data-m="tv" style="grid-column:1/-1">'+ICO.tv+'<span>Chế độ trình chiếu</span></button></div>';
   h+='<div class="ms-size"><span>Cỡ chữ</span><button data-m="s-" aria-label="Chữ nhỏ hơn">A−</button><i>'+['Nhỏ','Vừa','Lớn','Rất lớn'][msize]+'</i><button data-m="s+" aria-label="Chữ to hơn">A+</button></div>';
   GROUPS.forEach((G,gi)=>{const seen=G.items.filter(i=>SEEN.has(i)).length;const isCur=gi===sl._g;
     h+='<div class="ms-ch'+(isCur?' cur open':'')+'"><button data-g="'+gi+'"><div class="t"><span>'+esc(G.name)+'</span><em>'+seen+'/'+G.items.length+'</em></div><div class="bar"><i style="width:'+(seen/G.items.length*100)+'%"></i></div></button><ol>';
@@ -3301,6 +3543,8 @@ $('#msheet').addEventListener('click',e=>{
   const m=e.target.closest('[data-m]');if(!m)return;const a=m.dataset.m;
   if(a==='x')el.classList.remove('on');
   else if(a==='prac'){el.classList.remove('on');openPractice()}
+  else if(a==='sotay'){el.classList.remove('on');window.__sotay&&window.__sotay()}
+  else if(a==='find'){el.classList.remove('on');window.__search&&window.__search()}
   else if(a==='exam'){window.open(window.MD19_EXAM_URL,'_blank')}
   else if(a==='full'){el.classList.remove('on');fullscreen()}
   else if(a==='tv'){el.classList.remove('on');setView('p')}
@@ -3479,6 +3723,567 @@ function finish(auto){
 document.addEventListener('keydown',e=>{if(!root.classList.contains('on'))return;e.stopPropagation();if(e.key==='Escape')close();
   if(!S||S.done)return;const m={'1':0,'2':1,'3':2,'4':3,'a':0,'b':1,'c':2,'d':3}[e.key.toLowerCase()];if(m!=null){const b=$$('[data-o]',root)[m];if(b)b.click()}
   if(e.key==='ArrowRight'){const b=$('[data-p=next]',root);b&&b.click()}if(e.key==='ArrowLeft'){const b=$('[data-p=prev]',root);b&&!b.disabled&&b.click()}},true);
+})();
+</script>
+<script>/* Sổ tay: dữ liệu có sẵn (dùng khi chưa kết nối Google Sheet) */window.__SOTAY={"v":1,"cats":["Hư hỏng","Mã lỗi","Gas – áp suất","Cân cáp","Máy nén","Lắp đặt","Cảm biến","Quy trình","Quy đổi – công thức"],"tables":[{"id":"ST01","cat":"Hư hỏng","title":"Hiện tượng – nguyên nhân – cách khắc phục","note":"Kiểm tra từ dễ đến khó: chế độ remote → nguồn điện → tụ → quạt → gas → cảm biến, board → máy nén. Luôn ngắt điện, xả tụ trước khi chạm vào mạch.","src":"Sổ tay Điện lạnh dân dụng (tài liệu tham khảo của môn học) – phần \"Các pan phổ biến trên điều hòa Mono\" (tr. 59–73), bổ sung kinh nghiệm sửa chữa.","head":["Hiện tượng","Nguyên nhân","Kiểm tra – khắc phục"],"rows":[["Máy không lên nguồn (bấm remote không phản ứng, đèn không sáng)","Mất điện cấp vào: CB (aptomat) hỏng hoặc đã ngắt","Đo 220 V ở đầu vào và đầu ra CB khi CB đang đóng. Đầu vào có, đầu ra không có → thay CB."],["Máy không lên nguồn (bấm remote không phản ứng, đèn không sáng)","Dây nguồn đứt, chuột cắn, đầu cos lỏng","CB tốt nhưng 2 chân nguồn vào board dàn lạnh không có 220 V → kiểm tra, thay dây, siết lại cầu đấu."],["Máy không lên nguồn (bấm remote không phản ứng, đèn không sáng)","Cầu chì trên board dàn lạnh đứt, khối nguồn board hỏng","Nguồn vào board có 220 V mà máy không lên → đo cầu chì, đo nguồn 12 V và 5 V; sửa khối nguồn hoặc thay board."],["Máy không nhận remote","Remote hết pin, hỏng; remote đa năng cài sai mã","Thay pin. Bật camera điện thoại hướng vào đầu remote rồi bấm phím: thấy đèn hồng ngoại nháy là remote còn tốt. Remote đa năng: cài lại đúng mã hãng."],["Máy không nhận remote","Mắt nhận hoặc board hiển thị hỏng; giắc nối tiếp xúc kém","Bấm nút nguồn khẩn cấp trên dàn lạnh: máy chạy bình thường → lỗi mắt nhận/board hiển thị. Vệ sinh giắc bằng dung dịch tẩy rửa tiếp điểm, sửa hoặc thay board."],["Mất lạnh hoàn toàn – dàn lạnh chỉ thổi gió","Bật sai chế độ (FAN, DRY) hoặc cài nhiệt độ cao hơn nhiệt độ phòng","Chỉnh remote về COOL, cài thấp hơn nhiệt độ phòng ít nhất 2 °C, chờ 3–5 phút (thời gian bảo vệ khởi động lại)."],["Mất lạnh hoàn toàn – dàn lạnh chỉ thổi gió","Tụ máy nén hỏng (rất hay gặp)","Ngắt điện, xả tụ, đo điện dung. Sai lệch quá ±10% so với trị số ghi trên tụ, tụ phồng, chảy dầu → thay tụ đúng µF, điện áp ≥ 370 V."],["Mất lạnh hoàn toàn – dàn lạnh chỉ thổi gió","Tụ quạt dàn nóng yếu, hỏng; mô tơ quạt dàn nóng kẹt bạc, cháy","Quay cánh quạt bằng tay xem có nặng, kẹt không. Đo tụ quạt. Quạt không chạy → máy nén quá nhiệt, rơ le nhiệt (OLP) ngắt. Thay tụ, thay bạc hoặc mô tơ."],["Mất lạnh hoàn toàn – dàn lạnh chỉ thổi gió","Board dàn lạnh không cấp nguồn ra dàn nóng (rơ le hỏng)","Đo 220 V tại cầu đấu dàn nóng. Không có → đo chân cấp ra trên board dàn lạnh; board không cấp → sửa board. Board có cấp mà dàn nóng không có → dây nối giữa 2 dàn bị đứt."],["Mất lạnh hoàn toàn – dàn lạnh chỉ thổi gió","Máy nén kẹt cơ, chập, đứt cuộn dây","Ngắt điện, chờ máy nén nguội (OLP trong đóng lại), đo C – R – S và đo cách điện với vỏ. Cuộn dây tốt, tụ tốt mà máy nén chỉ kêu ù, dòng rất cao rồi OLP ngắt → kẹt cơ, thay máy nén. Xem quy trình \"Kiểm tra máy nén\"."],["Mất lạnh hoàn toàn – dàn lạnh chỉ thổi gió","Hết gas hoặc thiếu nhiều gas","Máy nén vẫn chạy nhưng áp suất hút rất thấp, dòng thấp. Tìm và xử lý điểm xì, thử kín, hút chân không, nạp gas."],["Mất lạnh hoàn toàn – dàn lạnh chỉ thổi gió","Cảm biến nhiệt độ phòng tăng trị số hoặc đứt","Board không cấp nguồn cho dàn nóng hoặc chạy 5–15 phút rồi ngắt. Đo trị số cảm biến, so với bảng \"Trị số cảm biến\"; sai thì thay đúng loại."],["Mất lạnh hoàn toàn – dàn lạnh chỉ thổi gió","Khởi động từ (contactor) dàn nóng hỏng tiếp điểm hoặc cuộn dây (máy từ 1,5 HP một số hãng)","Đo điện trở cuộn hút, cấp đúng điện áp thử đóng mở. Tiếp điểm cháy rỗ: chà sạch bằng giấy nhám, hỏng nặng thì thay contactor."],["Mất lạnh hoàn toàn – dàn lạnh chỉ thổi gió","Cầu chì dàn nóng đứt (một số dòng máy)","Tìm nguyên nhân trước (đấu nhầm dây, chạm chập, chuột cắn) rồi mới thay cầu chì cùng trị số. Không nối tắt cầu chì."],["Máy kém lạnh, lạnh yếu, lạnh không sâu","Dàn lạnh, lưới lọc, dàn nóng bẩn","Vệ sinh, bảo dưỡng máy."],["Máy kém lạnh, lạnh yếu, lạnh không sâu","Dàn nóng bí gió, quẩn gió (gió nóng thổi ra rồi bị hút lại)","Di dời dàn nóng, lắp tấm hướng gió, mở thông thoáng xung quanh; đảm bảo khoảng cách lắp đặt theo hãng."],["Máy kém lạnh, lạnh yếu, lạnh không sâu","Thiếu gas","Áp suất hút, dòng điện thấp hơn chuẩn; dàn lạnh chỉ lạnh một phần. Tìm điểm xì, khắc phục, hút chân không, nạp gas."],["Máy kém lạnh, lạnh yếu, lạnh không sâu","Quạt dàn lạnh quay yếu (tụ quạt yếu, bạc đạn khô)","Đổi tốc độ quạt trên remote, quan sát gió ra. Quạt không đổi tốc độ, quay yếu → đo tụ quạt trên board, kiểm tra bạc đạn."],["Máy kém lạnh, lạnh yếu, lạnh không sâu","Quạt dàn nóng quay yếu","Kiểm tra tụ quạt, quay tay cánh quạt kiểm tra trục, bạc đạn."],["Máy kém lạnh, lạnh yếu, lạnh không sâu","Cảm biến sai trị số làm máy nén ngắt sớm","Máy chạy một lúc thì ngắt máy nén dù phòng chưa đủ lạnh. Đo trị số cảm biến phòng và cảm biến ống dàn lạnh, thay nếu sai."],["Máy kém lạnh, lạnh yếu, lạnh không sâu","Máy nén yếu (van nén, van hút không kín)","Áp nén giảm, áp hút tăng, dòng giảm; gió dàn nóng chỉ ấm, nhiệt độ đầu đẩy < 50 °C. Thử thu hồi gas: áp hút không giảm hoặc giảm ít → máy nén yếu. Thử bổ sung dầu; không cải thiện → thay máy nén."],["Máy kém lạnh, lạnh yếu, lạnh không sâu","Nghẹt ống mao (cáp) hoặc phin lọc","Áp hút thấp, dàn lạnh không ướt hết; nạp thêm gas áp tăng rất chậm; máy nén, dàn nóng nóng hơn bình thường. Thu hồi gas, thổi nitơ hoặc thay cáp, phin; cân cáp lại."],["Máy kém lạnh, lạnh yếu, lạnh không sâu","Dàn lạnh đọng dầu (dàn nóng đặt cao hơn quy định, không làm bẫy dầu)","Thổi nitơ đường ống và dàn lạnh (khoảng 100–150 psi), bổ sung dầu cho máy nén; làm bẫy dầu nếu dàn nóng đặt cao."],["Máy kém lạnh, lạnh yếu, lạnh không sâu","Chọn máy không đủ công suất, phòng cách nhiệt kém (mái tôn, vách kính)","Tính lại công suất (xem bảng \"Tính công suất máy theo phòng\"). Lắp rèm, cách nhiệt, lắp thêm máy hoặc thay máy lớn hơn."],["Máy kém lạnh, lạnh yếu, lạnh không sâu","Điện áp chập chờn, yếu (giờ cao điểm)","Đo điện áp lúc máy nén khởi động: từ 180 V trở xuống là quá thấp; dòng tăng dần rồi OLP ngắt theo chu kỳ. Lắp ổn áp."],["Máy thiếu gas","Xì tại rắc co (đầu loe) dàn lạnh, dàn nóng","Tìm vết dầu loang ở rắc co, máng nước, đầu nạp. Thử bằng nước rửa chén pha loãng (không tạo bọt sẵn). Loe lại miệng loe, siết đúng lực."],["Máy thiếu gas","Xì ống đồng, xì dàn (lỗ mọt), xì van, đầu nạp","Không thấy vết dầu: cô lập từng phần (đường ống, dàn lạnh, dàn nóng), nạp nitơ thử kín trong 24 giờ để khoanh vùng."],["Máy thiếu gas","Sau khi sửa xong chỗ xì","Thử kín → hút chân không → nạp gas theo cân (khối lượng trên tem) hoặc theo áp suất, dòng điện."],["Dàn lạnh chảy nước","Máng nước, ống thoát bị nghẹt; ống thoát không đủ dốc, gập, ruột gà đóng cặn","Vệ sinh dàn, máng nước; đổ chai nước vào máng kiểm tra; thông ống, chỉnh độ dốc, thay ống."],["Dàn lạnh chảy nước","Bảo ôn ống đồng dưới bụng dàn lạnh hỏng, ngấm nước","Mở bảo ôn kiểm tra, thay bảo ôn mới, quấn kín không cho không khí lọt vào."],["Dàn lạnh chảy nước","Máng nước phụ phía sau dàn lạnh bẩn","Nhốt gas về dàn nóng, hạ dàn lạnh xuống vệ sinh mặt sau."],["Dàn lạnh chảy nước","Thiếu gas làm dàn lạnh đóng tuyết, tuyết tan chảy ra ngoài","Tìm điểm xì, nạp đủ gas."],["Dàn lạnh chảy nước","Máng nước mòn, hở; lá tản nhiệt dàn lạnh mục","Gia cố máng bằng băng keo bạc, silicon hoặc thay máng; dàn mục nặng thì thay dàn lạnh."],["Dàn lạnh chảy nước","Lắp đặt dàn lạnh nghiêng về phía ngược đường ống thoát","Cân chỉnh lại dàn lạnh bằng thước nivô, hơi dốc về phía ống thoát nước."],["Dàn lạnh bám tuyết (kín dàn hoặc một phần)","Thiếu gas","Áp suất hút, dòng thấp hơn bình thường → tìm xì, nạp gas."],["Dàn lạnh bám tuyết (kín dàn hoặc một phần)","Dàn lạnh, lưới lọc quá bẩn","Vệ sinh."],["Dàn lạnh bám tuyết (kín dàn hoặc một phần)","Quạt dàn lạnh hỏng hoặc quay quá yếu","Tắt máy, quay tay quạt kiểm tra kẹt trục; kiểm tra tụ quạt hoặc mạch điều khiển quạt (quạt DC)."],["Dàn lạnh bám tuyết (kín dàn hoặc một phần)","Dính tiếp điểm rơ le board dàn lạnh hoặc contactor → máy nén chạy liên tục","Đang chạy lạnh, tăng nhiệt độ cài cao hơn nhiệt độ phòng ít nhất 2 °C: máy nén không dừng → kiểm tra contactor, rơ le; thay rơ le hoặc sửa board."],["Dàn lạnh bám tuyết (kín dàn hoặc một phần)","Cảm biến nhiệt độ phòng bị nối tắt","Lắp lại cảm biến đúng trị số. Không nối tắt cảm biến để dùng lâu dài."],["Tuyết bám đường ống về (ống lớn)","Ống về bị gập, cúp","Rạch bảo ôn theo hướng tuyết bám tìm chỗ gập; nhốt gas, cắt bỏ đoạn gập, hàn thay ống mới."],["Tuyết bám đường ống về (ống lớn)","Dàn lạnh quá bẩn","Vệ sinh."],["Tuyết bám đường ống về (ống lớn)","Nghẹt van 3 ngã, nghẹt bình tách lỏng","Tuyết bám tới bình tách lỏng. Vặn van 3 ngã vào ra; không hết thì thay van hoặc bình tách lỏng."],["Tuyết bám đường ống về (ống lớn)","Nạp dư gas","Xả bớt về áp suất chuẩn. Gas R410A là hỗn hợp: xả quá nhiều sẽ lệch tỉ lệ, nên nạp lại theo cân."],["Dàn lạnh phun đá hoặc phun nước ra cửa gió","Thiếu gas","Xử lý xì, nạp gas."],["Dàn lạnh phun đá hoặc phun nước ra cửa gió","Dính tiếp điểm rơ le trên board dàn lạnh (máy không thiếu gas)","Tăng nhiệt độ cài cao hơn nhiệt độ phòng ≥ 2 °C xem máy nén có ngắt không; không ngắt → thay rơ le, sửa board."],["Dàn lạnh phun đá hoặc phun nước ra cửa gió","Cảm biến nhiệt độ phòng bị nối tắt hoặc sai trị số","Kiểm tra, thay cảm biến."],["Dàn lạnh phun đá hoặc phun nước ra cửa gió","Nước rơi vào quạt lồng sóc: máng sau bẩn, miếng dán đỉnh dàn hỏng","Nhốt gas, hạ dàn lạnh, tháo vệ sinh mặt trong, mặt ngoài, máng phụ; kiểm tra kỹ đỉnh dàn và lá tản nhiệt."],["Dàn nóng khởi động dòng rất cao rồi ngắt trong thời gian ngắn","Tụ máy nén yếu (rất hay gặp)","Đo điện dung, yếu thì thay. Máy có cảm biến dòng trên board dàn lạnh có thể ngắt rơ le rất nhanh trước khi OLP ngắt."],["Dàn nóng khởi động dòng rất cao rồi ngắt trong thời gian ngắn","Máy nén kẹt cơ hoặc chập, cháy cuộn dây","Kiểm tra theo quy trình \"Kiểm tra máy nén\"; hỏng thì thay máy nén."],["Dàn nóng khởi động dòng rất cao rồi ngắt trong thời gian ngắn","Điện áp yếu","Đo điện áp lúc máy nén khởi động (≤ 180 V là quá thấp). Lắp ổn áp."],["Dàn nóng khởi động dòng rất cao rồi ngắt trong thời gian ngắn","Áp suất chưa cân bằng: bật lại máy ngay sau khi tắt","Chờ 3–5 phút cho áp suất cân bằng rồi mới khởi động lại (máy có board thường tự trễ 3 phút)."],["Chạy 10–30 phút thì ngắt máy nén, quạt dàn nóng vẫn quay","Dàn nóng bẩn → quá nhiệt, OLP ngắt","Vệ sinh dàn nóng."],["Chạy 10–30 phút thì ngắt máy nén, quạt dàn nóng vẫn quay","Tụ máy nén, tụ quạt yếu","Kiểm tra, thay tụ."],["Chạy 10–30 phút thì ngắt máy nén, quạt dàn nóng vẫn quay","Rơ le nhiệt (OLP) bị non, ngắt sớm","Khi ngắt dòng vẫn bình thường. OLP ngoài: thay OLP mới; OLP trong máy nén hỏng: thay máy nén."],["Chạy 10–30 phút thì ngắt máy nén, quạt dàn nóng vẫn quay","Máy nén hỏng","Dòng lúc ngắt cao hơn định mức rất nhiều. Tách máy nén kiểm tra độc lập."],["Chạy 10–30 phút thì ngắt máy nén, quạt dàn nóng vẫn quay","Nghẹt cáp, nghẹt phin lọc","Máy nén tốt → cân cáp kiểm tra; áp cao hơn giá trị cho phép là nghẹt, thay cáp, phin."],["Chạy 10–30 phút thì ngắt cả dàn nóng (máy nén và quạt cùng dừng)","Cảm biến nhiệt độ phòng hoặc cảm biến ống dàn lạnh hỏng (hay gặp)","Đo trị số, thay cảm biến mới cùng loại. Không nối tắt cảm biến để dùng lâu dài (đóng băng dàn, hao điện, phòng quá lạnh)."],["Chạy 10–30 phút thì ngắt cả dàn nóng (máy nén và quạt cùng dừng)","Board dàn lạnh ngắt vì quá dòng (máy có cảm biến dòng)","Đo dòng lúc dàn lạnh ngắt nguồn ra dàn nóng. Dòng cao → kiểm tra dàn nóng bẩn, quẩn gió, tụ yếu, máy nén, nghẹt cáp, phin."],["Dàn nóng kêu to, rung","Cao su chân máy nén lão hóa","Thay bộ cao su chân máy nén."],["Dàn nóng kêu to, rung","Dàn nóng đặt không chắc chắn (trên mái tôn, giá đỡ lỏng)","Gia cố, đặt trên thanh thép hộp, bắt cao su chống rung hoặc di dời."],["Dàn nóng kêu to, rung","Đáy dàn nóng chỗ máy nén mục rỉ","Gia cố hoặc thay vỏ, thay dàn nóng cùng công suất (máy Inverter phải đúng hãng, đúng đời máy)."],["Dàn nóng kêu to, rung","Vỏ dàn nóng thiếu vít, cánh quạt chạm lưới","Giữ nhẹ tay lên từng vị trí vỏ xem hết kêu không; bắt thêm vít, chỉnh cánh quạt."],["Dàn nóng kêu to, rung","Máy nén mòn, cong vênh cơ cấu bên trong","Thay máy nén."],["Dàn lạnh có tiếng kêu","Mô tơ quạt dàn lạnh hỏng bạc đạn","Thay bạc đạn (mô tơ vỏ sắt dập liền nên thay luôn mô tơ)."],["Dàn lạnh có tiếng kêu","Đệm cao su đỡ đầu trục quạt lồng sóc khô mỡ","Tra mỡ bò (không tra nhớt)."],["Dàn lạnh có tiếng kêu","Lồng sóc bám bẩn lệch tâm, chạm vỏ; mặt nạ, lưới lọc lỏng","Vệ sinh lồng sóc, cân chỉnh vị trí; lắp chặt mặt nạ."],["Dàn lạnh có tiếng kêu","Tiếng \"tách tách\" nhỏ khi mới bật, tắt máy","Bình thường: vỏ nhựa co giãn vì nhiệt; tiếng gas chảy \"xì xì\" nhẹ cũng là bình thường."],["Bật máy thì CB (aptomat) nhảy","Chạm chập dây nguồn, dây nối 2 dàn; cầu đấu cháy","Ngắt điện, đo thông mạch, đo cách điện từng đoạn dây; thay dây, cầu đấu."],["Bật máy thì CB (aptomat) nhảy","Máy nén chạm vỏ hoặc chập cuộn dây","Đo cách điện cọc máy nén với vỏ (≥ 2 MΩ mới đạt), đo điện trở cuộn dây. Hỏng → thay máy nén."],["Bật máy thì CB (aptomat) nhảy","Tụ chập","Đo tụ, thay tụ mới."],["Bật máy thì CB (aptomat) nhảy","CB quá nhỏ hoặc CB yếu; CB chống giật nhảy do rò điện","Chọn CB theo bảng \"Dây dẫn – aptomat\". CB chống giật nhảy: tìm chỗ rò điện, kiểm tra dây tiếp địa."],["Vỏ máy bị rò điện (chạm vào thấy tê, bút thử điện sáng)","Không nối đất; dây điện chạm vỏ; máy nén, mô tơ chạm vỏ; dàn nóng ẩm ướt","Ngắt điện ngay. Đo cách điện từng thiết bị với vỏ; xử lý chỗ chạm; nối dây tiếp địa cho máy."],["Quạt dàn lạnh không quay hoặc quay yếu","Tụ quạt dàn lạnh hỏng (mô tơ AC)","Đo, thay tụ (thường 1–2,5 µF, 450 V)."],["Quạt dàn lạnh không quay hoặc quay yếu","Kẹt trục, khô bạc; lồng sóc trượt trục","Quay tay kiểm tra; tra mỡ, thay bạc; siết lại vít lồng sóc."],["Quạt dàn lạnh không quay hoặc quay yếu","Mô tơ cháy; board không cấp nguồn cho quạt (quạt DC báo lỗi)","Đo cuộn dây mô tơ AC; với quạt DC kiểm tra nguồn và tín hiệu trên board theo tài liệu hãng; thay mô tơ hoặc sửa board."],["Cánh đảo gió không đảo","Mô tơ đảo gió (mô tơ bước 12 V) hỏng; giắc lỏng; kẹt cơ khí","Kiểm tra giắc, đo các cuộn của mô tơ bước (các cuộn bằng nhau, thường vài trăm Ω); gỡ vật kẹt; thay mô tơ hoặc sửa board."],["Máy có mùi hôi, mùi ẩm mốc","Dàn lạnh, lưới lọc, lồng sóc bẩn, nấm mốc; nước đọng trong máng","Vệ sinh toàn bộ, xịt dung dịch khử khuẩn chuyên dụng; thông máng, ống thoát nước."],["Máy có mùi hôi, mùi ẩm mốc","Ống thoát nước cắm thẳng vào cống, hút mùi cống ngược lên","Đổi vị trí xả hoặc làm bẫy nước (si phông) cho ống thoát."],["Máy 2 chiều không sưởi (chỉ ra gió lạnh hoặc gió thường)","Chưa đúng chế độ HEAT; máy đang xả băng (đèn báo, quạt dừng 5–12 phút)","Chọn đúng HEAT; chờ hết thời gian xả băng (bình thường). Khi mới bật sưởi, quạt dàn lạnh chờ dàn ấm mới chạy."],["Máy 2 chiều không sưởi (chỉ ra gió lạnh hoặc gió thường)","Van đảo chiều 4 ngã kẹt; cuộn dây van đứt; board không cấp điện cho cuộn van","Đo điện áp cấp cho cuộn van khi chạy sưởi, đo điện trở cuộn (thường khoảng 1–2 kΩ); gõ nhẹ thân van khi có điện; thay cuộn hoặc van."],["Máy 2 chiều không sưởi (chỉ ra gió lạnh hoặc gió thường)","Thiếu gas","Đo áp suất ở van 3 ngã khi sưởi (là áp cao, dùng đồng hồ cao áp); thiếu thì xử lý xì, nạp gas."],["Máy Inverter báo lỗi, đèn nháy, dàn nóng không chạy","Board phát hiện lỗi (cảm biến, giao tiếp, IPM, máy nén, gas…)","Đọc mã lỗi (xem bảng \"Cách đọc mã lỗi\") rồi tra bảng mã lỗi của hãng. Kiểm tra theo thứ tự: nguồn → dây tín hiệu 2 dàn → cảm biến → quạt → gas → board, IPM → máy nén."],["Máy Inverter báo lỗi, đèn nháy, dàn nóng không chạy","Đấu sai, lỏng dây tín hiệu giữa 2 dàn (lỗi giao tiếp)","Đối chiếu số trên cầu đấu 2 dàn (L, N, S hoặc 1, 2, 3), siết lại; đo điện áp dây tín hiệu dao động khi máy chạy. Không chạy chung ống luồn với dây điện khác gây nhiễu."],["Máy tốn điện bất thường","Máy bẩn, thiếu hoặc dư gas, quạt yếu, máy nén yếu","Bảo dưỡng; đo áp suất, dòng điện so với chuẩn; xử lý theo các mục ở trên."],["Máy tốn điện bất thường","Cài nhiệt độ quá thấp; phòng hở, nhiều nguồn nhiệt; chọn sai công suất","Cài 26–28 °C; đóng kín cửa, che nắng; tính lại công suất máy."]]},{"id":"ST02","cat":"Mã lỗi","title":"Mã lỗi điều hòa Daikin (máy treo tường dân dụng)","note":"Mã lỗi Daikin gồm 1 chữ cái + 1 ký tự. Cách đọc mã bằng remote: xem bảng \"Cách đọc mã lỗi\".","src":"Tài liệu dịch vụ Daikin, tổng hợp từ arlingtonairconditioningheating.com và viettablet.com. Mã có thể khác theo dòng máy.","head":["Hãng","Mã lỗi","Ý nghĩa","Kiểm tra – khắc phục"],"rows":[["Daikin","00","Bình thường, không có lỗi","—"],["Daikin","A1","Lỗi board dàn lạnh","Kiểm tra nguồn, giắc cắm trên board; sửa hoặc thay board dàn lạnh."],["Daikin","A5","Bảo vệ chống đóng băng (khi làm lạnh) hoặc quá áp (khi sưởi)","Vệ sinh lưới lọc, dàn lạnh; kiểm tra quạt dàn lạnh, lượng gas, cảm biến ống dàn lạnh."],["Daikin","A6","Lỗi mô tơ quạt dàn lạnh (kẹt, quá tải)","Quay tay kiểm tra kẹt; kiểm tra giắc, mô tơ, mạch điều khiển quạt trên board."],["Daikin","AH","Lỗi bộ lọc không khí điện tử (máy có chức năng lọc)","Vệ sinh, kiểm tra bộ lọc và mạch cao áp của bộ lọc."],["Daikin","C4","Lỗi cảm biến nhiệt độ ống dàn lạnh (đường lỏng)","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["Daikin","C7","Lỗi mô tơ hoặc công tắc hành trình mặt nạ, cánh đảo gió","Kiểm tra cơ cấu đóng mở mặt nạ, mô tơ và giắc."],["Daikin","C9","Lỗi cảm biến nhiệt độ phòng (gió hồi)","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["Daikin","E1","Lỗi board dàn nóng","Kiểm tra nguồn, cầu chì, giắc trên board dàn nóng; sửa hoặc thay board."],["Daikin","E5","Máy nén quá nhiệt, rơ le nhiệt (OL) tác động","Kiểm tra lượng gas, dàn nóng bẩn, quạt dàn nóng, van tiết lưu; kiểm tra máy nén."],["Daikin","E6","Máy nén kẹt hoặc khởi động không được","Đo cuộn dây máy nén (U-V-W bằng nhau), cách điện; kiểm tra IPM, board; áp suất chưa cân bằng."],["Daikin","E7","Lỗi mô tơ quạt dàn nóng (quạt DC bị khóa)","Quay tay kiểm tra kẹt, kiểm tra giắc, mô tơ, mạch điều khiển quạt."],["Daikin","E8","Quá dòng đầu vào","Kiểm tra điện áp nguồn, dàn nóng bẩn, quẩn gió, dư gas, máy nén; kiểm tra board."],["Daikin","EA","Lỗi van đảo chiều 4 ngã","Đo cuộn dây van, điện áp cấp cho cuộn khi chạy sưởi; kiểm tra van kẹt, cảm biến."],["Daikin","F3","Nhiệt độ ống đẩy máy nén quá cao","Thường do thiếu gas, nghẹt van tiết lưu, nghẹt phin; kiểm tra cảm biến ống đẩy."],["Daikin","F6","Áp suất cao bất thường khi làm lạnh","Vệ sinh dàn nóng, kiểm tra quạt dàn nóng, quẩn gió, dư gas, lẫn khí không ngưng."],["Daikin","H0","Lỗi hệ thống cảm biến của máy nén","Kiểm tra dây nối máy nén, board dàn nóng."],["Daikin","H6","Lỗi cảm biến vị trí rô to máy nén (không khởi động được)","Kiểm tra dây U-V-W, cuộn dây máy nén, IPM, board dàn nóng."],["Daikin","H8","Lỗi cảm biến dòng (CT) / điện áp DC","Kiểm tra board dàn nóng, nguồn cấp."],["Daikin","H9","Lỗi cảm biến nhiệt độ ngoài trời","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["Daikin","J3","Lỗi cảm biến nhiệt độ ống đẩy máy nén","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["Daikin","J6","Lỗi cảm biến nhiệt độ dàn nóng","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["Daikin","L3","Nhiệt độ hộp điện dàn nóng tăng cao","Kiểm tra quạt dàn nóng, thông gió dàn nóng, cảm biến."],["Daikin","L4","Nhiệt độ cánh tản nhiệt biến tần tăng cao","Vệ sinh dàn nóng, kiểm tra quạt, keo tản nhiệt IPM, cảm biến cánh tản nhiệt."],["Daikin","L5","Quá dòng tức thời ngõ ra biến tần (máy nén)","Kiểm tra máy nén (cuộn dây, cách điện, kẹt), IPM, board; lượng gas."],["Daikin","P4","Lỗi cảm biến nhiệt độ cánh tản nhiệt biến tần","Thay cảm biến hoặc board dàn nóng."],["Daikin","U0","Thiếu gas","Kiểm tra áp suất, tìm điểm xì, xử lý rồi hút chân không, nạp gas đúng lượng; kiểm tra van chặn đã mở hết chưa."],["Daikin","U2","Điện áp nguồn bất thường (quá thấp, quá cao, chập chờn)","Đo điện áp nguồn, kiểm tra dây, CB; lắp ổn áp nếu cần; kiểm tra board."],["Daikin","U4","Lỗi truyền tín hiệu giữa dàn lạnh và dàn nóng","Kiểm tra dây nối 2 dàn (đúng số, siết chặt, không đứt), nguồn dàn nóng, đo điện áp dây tín hiệu; kiểm tra board dàn lạnh, dàn nóng."],["Daikin","UA","Dàn lạnh và dàn nóng không tương thích, cài đặt sai","Kiểm tra mã model 2 dàn, dây nối, cài đặt."],["Daikin","UH","Lỗi dây tín hiệu, không đồng bộ dàn, điện áp","Kiểm tra dây tín hiệu, nguồn, cài đặt."]]},{"id":"ST03","cat":"Mã lỗi","title":"Mã lỗi điều hòa Panasonic","note":"Mã lỗi Panasonic gồm chữ H hoặc F + 2 chữ số.","src":"Panasonic Việt Nam – trang \"Mã lỗi máy lạnh Panasonic\" (panasonic.com/vn), diễn giải ngắn gọn.","head":["Hãng","Mã lỗi","Ý nghĩa","Kiểm tra – khắc phục"],"rows":[["Panasonic","H00","Bình thường, không có lỗi","—"],["Panasonic","H11","Mất liên lạc giữa dàn lạnh và dàn nóng","Kiểm tra dây nối 2 dàn (đúng số, siết chặt, không đứt), nguồn dàn nóng, đo điện áp dây tín hiệu; kiểm tra board dàn lạnh, dàn nóng."],["Panasonic","H12","Công suất dàn lạnh và dàn nóng không tương thích","Kiểm tra model 2 dàn, cài đặt."],["Panasonic","H14","Lỗi cảm biến nhiệt độ phòng","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["Panasonic","H15","Lỗi cảm biến nhiệt độ máy nén","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["Panasonic","H16","Lỗi biến dòng (CT) dàn nóng – dòng tải thấp bất thường (thường do thiếu gas)","Kiểm tra lượng gas, van chặn đã mở hết; kiểm tra biến dòng CT và board dàn nóng."],["Panasonic","H27","Lỗi cảm biến nhiệt độ ngoài trời","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["Panasonic","H28","Lỗi cảm biến nhiệt độ dàn nóng","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["Panasonic","H30","Lỗi cảm biến nhiệt độ ống đẩy máy nén","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["Panasonic","H33","Đấu nối dàn lạnh – dàn nóng sai (sai điện áp, sai dây)","Kiểm tra dây nối 2 dàn (đúng số, siết chặt, không đứt), nguồn dàn nóng, đo điện áp dây tín hiệu; kiểm tra board dàn lạnh, dàn nóng."],["Panasonic","H97","Lỗi quạt dàn nóng","Quay tay kiểm tra kẹt, kiểm tra giắc, mô tơ, board."],["Panasonic","H98","Nhiệt độ dàn lạnh tăng cao bất thường khi sưởi","Vệ sinh lưới lọc, dàn lạnh; kiểm tra quạt dàn lạnh, đường gas."],["Panasonic","H99","Dàn lạnh nhiệt độ quá thấp, đóng băng","Kiểm tra lượng gas, lưới lọc, quạt dàn lạnh."],["Panasonic","F11","Lỗi van đảo chiều 4 ngã","Đo cuộn dây van, điện áp cấp; kiểm tra van kẹt, giắc cắm."],["Panasonic","F16","Bảo vệ quá dòng","Kiểm tra điện áp nguồn, dàn nóng bẩn, dư gas, máy nén."],["Panasonic","F90","Lỗi mạch PFC (mạch hiệu chỉnh hệ số công suất)","Kiểm tra điện áp nguồn, board dàn nóng."],["Panasonic","F91","Dòng tải máy nén thấp bất thường","Kiểm tra van chặn đã mở hết, lượng gas, đường ống, phin lọc bị tắc."],["Panasonic","F93","Tốc độ quay máy nén bất thường","Kiểm tra dây U-V-W, cuộn dây máy nén, IPM, board."],["Panasonic","F95","Nhiệt độ (áp suất) dàn nóng quá cao","Vệ sinh dàn nóng, kiểm tra quạt, vị trí lắp đặt quẩn gió, lượng gas."],["Panasonic","F96","IPM (khối công suất) quá nhiệt","Kiểm tra quạt dàn nóng, tản nhiệt IPM, lượng gas; kiểm tra board."],["Panasonic","F97","Nhiệt độ máy nén quá cao","Kiểm tra lượng gas (thiếu gas), van tiết lưu, cảm biến máy nén."],["Panasonic","F98","Dòng tải máy nén cao bất thường","Kiểm tra dàn nóng bẩn, quạt, dư gas, máy nén."],["Panasonic","F99","Dòng DC ra máy nén tăng cao (đỉnh dòng)","Kiểm tra máy nén (chập, kẹt), IPM, board."]]},{"id":"ST04","cat":"Mã lỗi","title":"Mã lỗi điều hòa LG","note":"Máy LG không có màn hình: đếm số lần nháy đèn (1 lần = CH01, 2 lần = CH02, 5 lần = CH05…). Mã có thể khác theo model.","src":"LG – trang hỗ trợ lg.com (nhóm lỗi CH05/53, CH32–38, CH66/90–93) và tài liệu dịch vụ; tham khảo viettablet.com, cellphones.com.vn.","head":["Hãng","Mã lỗi","Ý nghĩa","Kiểm tra – khắc phục"],"rows":[["LG","CH01","Lỗi cảm biến nhiệt độ phòng","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["LG","CH02","Lỗi cảm biến nhiệt độ ống dàn lạnh (đầu vào)","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["LG","CH03","Lỗi giao tiếp với điều khiển có dây","Kiểm tra dây và remote có dây."],["LG","CH04","Lỗi bơm nước ngưng hoặc phao báo đầy (máy âm trần, giấu trần)","Kiểm tra bơm, phao, đường thoát nước."],["LG","CH05","Mất liên lạc giữa dàn lạnh và dàn nóng","Kiểm tra dây nối 2 dàn (đúng số, siết chặt, không đứt), nguồn dàn nóng, đo điện áp dây tín hiệu; kiểm tra board dàn lạnh, dàn nóng."],["LG","CH06","Lỗi cảm biến nhiệt độ ống dàn lạnh (đầu ra)","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["LG","CH07","Các dàn lạnh chạy khác chế độ (máy Multi)","Đặt cùng chế độ (lạnh hoặc sưởi) cho các dàn lạnh."],["LG","CH09","Lỗi bộ nhớ EEPROM dàn lạnh","Sửa hoặc thay board dàn lạnh."],["LG","CH10","Lỗi quạt dàn lạnh (mô tơ BLDC)","Quay tay kiểm tra kẹt; kiểm tra giắc, mô tơ, board."],["LG","CH21","Lỗi IPM, quá dòng tức thời (DC peak)","Kiểm tra máy nén, IPM, board dàn nóng; lượng gas."],["LG","CH22","Quá dòng đầu vào / lỗi cảm biến dòng","Kiểm tra điện áp nguồn, dàn nóng bẩn, dư gas; kiểm tra board."],["LG","CH23","Điện áp DC link bất thường (thấp hoặc cao)","Đo điện áp nguồn; kiểm tra board dàn nóng."],["LG","CH26","Máy nén không khởi động được (lỗi vị trí rô to)","Kiểm tra dây U-V-W, cuộn dây máy nén, IPM; áp suất chưa cân bằng."],["LG","CH27","Quá dòng đầu vào AC, lỗi mạch PFC","Kiểm tra nguồn điện, board dàn nóng."],["LG","CH29","Quá dòng pha máy nén","Kiểm tra máy nén, IPM, lượng gas."],["LG","CH32","Nhiệt độ ống đẩy máy nén quá cao","Thường do thiếu gas, nghẹt van tiết lưu; kiểm tra cảm biến ống đẩy."],["LG","CH38","Thiếu gas (LG xếp vào nhóm lỗi gas, máy nén)","Kiểm tra áp suất, tìm điểm xì, xử lý rồi hút chân không, nạp gas đúng lượng; kiểm tra van chặn đã mở hết chưa."],["LG","CH41","Lỗi cảm biến nhiệt độ ống đẩy máy nén","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["LG","CH44","Lỗi cảm biến nhiệt độ ngoài trời","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["LG","CH45","Lỗi cảm biến nhiệt độ dàn nóng","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["LG","CH46","Lỗi cảm biến nhiệt độ ống hút","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["LG","CH53","Lỗi truyền tín hiệu (dàn nóng không nhận được tín hiệu dàn lạnh)","Kiểm tra dây nối 2 dàn (đúng số, siết chặt, không đứt), nguồn dàn nóng, đo điện áp dây tín hiệu; kiểm tra board dàn lạnh, dàn nóng."],["LG","CH60","Lỗi bộ nhớ EEPROM dàn nóng","Sửa hoặc thay board dàn nóng."],["LG","CH61","Nhiệt độ dàn nóng quá cao","Vệ sinh dàn nóng, kiểm tra quạt, quẩn gió, dư gas."],["LG","CH62","Nhiệt độ tản nhiệt IPM quá cao","Kiểm tra quạt dàn nóng, tản nhiệt IPM."],["LG","CH65","Lỗi cảm biến nhiệt độ tản nhiệt IPM","Thay cảm biến hoặc board."],["LG","CH66","Lỗi đấu dây hoặc lắp đặt (lúc chạy thử)","Kiểm tra lại dây nối, đường ống sau lắp đặt."],["LG","CH67","Quạt dàn nóng bị khóa, kẹt","Quay tay kiểm tra kẹt; kiểm tra mô tơ, giắc, board."],["LG","CH90 – CH93","Lỗi khi chạy thử sau lắp đặt (đấu dây, đường gas)","Kiểm tra dây nối, van chặn đã mở, đường ống không bị gập."]]},{"id":"ST05","cat":"Mã lỗi","title":"Mã lỗi điều hòa Samsung","note":"Mã lỗi Samsung gồm chữ E + 3 chữ số, hiện trên màn hình dàn lạnh. Mã có thể khác theo model.","src":"Samsung – trang hỗ trợ samsung.com (bảng mã lỗi điều hòa), diễn giải tiếng Việt.","head":["Hãng","Mã lỗi","Ý nghĩa","Kiểm tra – khắc phục"],"rows":[["Samsung","CF","Nhắc vệ sinh lưới lọc (không phải lỗi)","Vệ sinh lưới lọc rồi đặt lại nhắc nhở."],["Samsung","dF","Đang xả băng khi chạy sưởi (không phải lỗi)","Chờ 5–12 phút."],["Samsung","E101 / E102 / E202","Lỗi giao tiếp dàn lạnh – dàn nóng","Kiểm tra dây nối 2 dàn (đúng số, siết chặt, không đứt), nguồn dàn nóng, đo điện áp dây tín hiệu; kiểm tra board dàn lạnh, dàn nóng."],["Samsung","E121","Lỗi cảm biến nhiệt độ phòng","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["Samsung","E122","Lỗi cảm biến nhiệt độ ống dàn lạnh","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["Samsung","E154","Lỗi quạt dàn lạnh (không đạt tốc độ)","Quay tay kiểm tra kẹt, kiểm tra mô tơ, giắc, board."],["Samsung","E162","Lỗi EEPROM dàn lạnh","Sửa hoặc thay board dàn lạnh."],["Samsung","E203","Lỗi giao tiếp giữa board chính và board biến tần dàn nóng","Kiểm tra giắc nối giữa 2 board, nguồn board."],["Samsung","E221","Lỗi cảm biến nhiệt độ ngoài trời","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["Samsung","E231","Lỗi cảm biến nhiệt độ dàn nóng","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["Samsung","E251","Lỗi cảm biến nhiệt độ ống đẩy","Kiểm tra giắc cắm (lỏng, ô xy hóa), đo điện trở cảm biến so với trị số chuẩn, thay cảm biến; vẫn lỗi thì kiểm tra board."],["Samsung","E416","Nhiệt độ ống đẩy quá cao","Thường do thiếu gas, nghẹt van tiết lưu; kiểm tra cảm biến."],["Samsung","E458","Lỗi quạt dàn nóng","Quay tay kiểm tra kẹt; kiểm tra mô tơ, giắc, board."],["Samsung","E461","Máy nén khởi động không được","Kiểm tra cuộn dây máy nén, IPM, áp suất cân bằng."],["Samsung","E462","Quá dòng đầu vào / quá dòng mạch PFC","Kiểm tra nguồn điện, dàn nóng bẩn, dư gas, board."],["Samsung","E464","Quá dòng IPM","Kiểm tra máy nén, IPM, board dàn nóng."],["Samsung","E465","Máy nén vượt giới hạn dòng (V-limit)","Kiểm tra máy nén, lượng gas, dàn nóng."],["Samsung","E466","Điện áp DC link quá thấp hoặc quá cao","Đo điện áp nguồn; kiểm tra board."],["Samsung","E467","Lỗi quay máy nén","Kiểm tra dây U-V-W, máy nén, IPM."],["Samsung","E468","Lỗi cảm biến dòng điện","Kiểm tra, thay board dàn nóng."],["Samsung","E469","Lỗi cảm biến điện áp DC link","Kiểm tra, thay board dàn nóng."],["Samsung","E470","Lỗi EEPROM dàn nóng","Sửa hoặc thay board dàn nóng."],["Samsung","E471","Lỗi OTP (bộ nhớ chương trình) dàn nóng","Sửa hoặc thay board dàn nóng."],["Samsung","E472","Lỗi tín hiệu điện áp xoay chiều (zero-crossing)","Đo điện áp nguồn; kiểm tra board."],["Samsung","E474","Lỗi cảm biến nhiệt độ tản nhiệt","Thay cảm biến hoặc board."],["Samsung","E500","Tản nhiệt IPM quá nóng","Kiểm tra quạt dàn nóng, tản nhiệt."],["Samsung","E554","Rò rỉ gas (thiếu gas)","Kiểm tra áp suất, tìm điểm xì, xử lý rồi hút chân không, nạp gas đúng lượng; kiểm tra van chặn đã mở hết chưa."],["Samsung","E556","Công suất dàn lạnh và dàn nóng không tương thích","Kiểm tra model 2 dàn."]]},{"id":"ST06","cat":"Mã lỗi","title":"Cách đọc mã lỗi theo hãng","note":"","src":"Hướng dẫn sử dụng, trang hỗ trợ của các hãng; cellphones.com.vn (LG).","head":["Hãng","Cách xem mã lỗi","Ghi chú"],"rows":[["Daikin","Hướng remote vào dàn lạnh, nhấn giữ nút CANCEL (hẹn giờ hủy) khoảng 5 giây đến khi remote hiện \"00\". Bấm CANCEL nhiều lần để chuyển mã; khi dàn lạnh kêu bíp dài thì mã đang hiện trên remote là mã lỗi.","Remote đời mới có thể khác tên nút; xem hướng dẫn kèm máy."],["Panasonic","Dùng đầu bút nhấn giữ nút CHECK khoảng 5 giây (remote hiện \"--\"), hướng về dàn lạnh, bấm nút tăng/giảm để dò từng mã; khi dàn lạnh kêu bíp dài và đèn nguồn sáng liên tục thì mã đang hiện là mã lỗi.","Xong nhấn CHECK để thoát. Máy đời mới có thể hiện mã trên dàn lạnh hoặc ứng dụng điện thoại."],["LG","Máy có màn hình: tự hiện CHxx khi có lỗi. Máy không có màn hình: đếm số lần nháy của đèn nguồn trong mỗi chu kỳ (nháy 5 lần = CH05…).","Một số model cần giữ nút trên remote 3–5 giây để vào chế độ chẩn đoán."],["Samsung","Mã lỗi E + 3 chữ số tự hiện trên màn hình dàn lạnh.","CF, dF, C1 là thông báo, không phải lỗi."],["Chung","Ghi lại mã lỗi, ngắt điện CB khoảng 5 phút rồi bật lại. Mã lỗi lặp lại → kiểm tra theo bảng mã lỗi của hãng, đúng model.","Lỗi xuất hiện ngay sau lắp đặt: thường do đấu dây sai, lỏng hoặc chưa mở van chặn, xì gas."]]},{"id":"ST07","cat":"Gas – áp suất","title":"Áp suất làm việc tiêu chuẩn và đặc điểm từng loại gas","note":"Áp suất ghi theo đồng hồ (áp suất dư). Nạp gas theo áp suất chỉ chính xác khi dàn sạch, quạt tốt, nhiệt độ ngoài trời bình thường; kết hợp đo dòng điện và quan sát dàn lạnh.","src":"Áp suất tính từ bảng tính chất nhiệt động của gas (bảng P–T trong bài giảng); thử kín, cách nạp: hướng dẫn lắp đặt của các hãng; Sổ tay Điện lạnh dân dụng (tài liệu tham khảo của môn học) (tr. 12–13).","head":["Thông số","R22","R410A","R32","Ghi chú"],"rows":[["Áp suất tĩnh khi máy tắt (ngoài trời 30 °C)","≈ 155–160 psi","≈ 255–260 psi","≈ 260–265 psi","Bằng áp suất bão hòa ở nhiệt độ môi trường; trời nóng hơn thì cao hơn (tra bảng P–T)."],["Áp suất hút khi chạy làm lạnh, đủ gas (đo ở van 3 ngã)","60–75 psi","110–135 psi","115–140 psi","Ứng với nhiệt độ bay hơi khoảng 2–8 °C. Ngoài trời nóng, phòng nóng thì áp hút cao hơn một chút."],["Áp suất nén (đầu đẩy) khi làm lạnh, ngoài trời 35 °C","235–270 psi","380–430 psi","390–440 psi","Ứng với nhiệt độ ngưng tụ khoảng 45–50 °C. Máy treo tường thường không có cổng đo phía cao áp."],["Áp suất ở van 3 ngã khi chạy sưởi (máy 2 chiều)","210–270 psi","335–430 psi","345–440 psi","Khi sưởi, van 3 ngã nằm phía cao áp: phải dùng đồng hồ cao áp."],["Áp suất thử kín bằng nitơ","150–250 psi","300–550 psi","300–550 psi","Theo hướng dẫn lắp đặt của hãng; giữ áp ít nhất 30 phút."],["Nhiệt độ sôi ở áp suất khí quyển","−40,8 °C","−51,4 °C","−51,7 °C","Gas lỏng bắn vào da gây bỏng lạnh."],["Cách nạp","Nạp hơi (bình dựng đứng)","Nạp lỏng (dốc ngược bình), nạp chậm","Nạp hơi hoặc lỏng; nên nạp theo cân","R410A là hỗn hợp 2 chất: nạp hơi sẽ làm lệch tỉ lệ."],["Dầu máy nén","Dầu khoáng","Dầu tổng hợp POE (hút ẩm mạnh)","Dầu tổng hợp POE hoặc PVE","Không trộn dầu, không trộn gas khác loại."],["Nhóm an toàn","A1 – không cháy","A1 – không cháy","A2L – cháy nhẹ","R32: thông gió, cấm lửa, không hút thuốc khi nạp, hàn; dùng dụng cụ cho R32."],["Ảnh hưởng môi trường","Phá hủy tầng ô dôn (HCFC), đang bị loại bỏ","Không phá ô dôn, làm nóng toàn cầu cao","Không phá ô dôn, làm nóng toàn cầu thấp hơn R410A","Máy mới hiện nay chủ yếu dùng R32."],["Màu bình gas thường gặp","Xanh lá nhạt","Hồng","Xanh dương nhạt","Luôn đọc nhãn trên bình, không chỉ dựa vào màu."],["Đồng hồ, dây nạp","Loại thông dụng","Loại chịu áp cao (cho R410A/R32)","Loại chịu áp cao (cho R410A/R32)","Đầu nối cổng nạp R410A/R32 là 5/16\", R22 là 1/4\"."]]},{"id":"ST08","cat":"Gas – áp suất","title":"Bảng áp suất – nhiệt độ bão hòa (P–T)","note":"Áp suất theo đồng hồ. Cách dùng: đo áp suất hút → tra ra nhiệt độ bay hơi; đo áp suất khi máy tắt lâu và nhiệt độ môi trường → nhận biết loại gas (sai lệch vài psi là bình thường).","src":"Tính từ tính chất nhiệt động của gas lạnh (áp suất tuyệt đối trừ 1,013 bar).","head":["Nhiệt độ bão hòa (°C)","R22 (psi)","R22 (bar)","R410A (psi)","R410A (bar)","R32 (psi)","R32 (bar)"],"rows":[["−10","37","2,5","68","4,7","70","4,8"],["−5","46","3,2","84","5,8","85","5,9"],["0","57","4,0","101","7,0","103","7,1"],["5","70","4,8","121","8,3","123","8,5"],["10","84","5,8","143","9,8","146","10,1"],["15","100","6,9","167","11,5","171","11,8"],["20","117","8,1","195","13,4","199","13,7"],["25","137","9,4","225","15,5","230","15,9"],["30","158","10,9","259","17,8","265","18,3"],["35","182","12,5","296","20,4","303","20,9"],["40","208","14,3","336","23,2","345","23,8"],["45","236","16,3","381","26,2","391","26,9"],["50","267","18,4","429","29,6","441","30,4"],["55","301","20,7","482","33,2","496","34,2"]]},{"id":"ST09","cat":"Gas – áp suất","title":"Nạp gas bổ sung theo chiều dài ống","note":"Mỗi hãng quy định khác nhau: luôn ưu tiên số liệu trên tem dàn nóng và sách hướng dẫn lắp đặt đi kèm máy.","src":"Hướng dẫn lắp đặt máy điều hòa treo tường (Carrier 42QHE, manualslib.com) – số liệu tham khảo.","head":["Loại gas","Ống lỏng 6,35 mm (1/4\")","Ống lỏng 9,52 mm (3/8\")","Ghi chú"],"rows":[["R22","20 g/m","40 g/m",""],["R410A","15 g/m","30 g/m",""],["R32","12 g/m","24 g/m",""],["Cách tính","Lượng gas nạp thêm = (Chiều dài ống thực tế − Chiều dài ống tiêu chuẩn) × số gam mỗi mét","","Chiều dài ống tiêu chuẩn (đã nạp sẵn trong dàn nóng) thường 5 m hoặc 7,5 m tùy hãng, xem tem hoặc hướng dẫn lắp đặt."]]},{"id":"ST10","cat":"Gas – áp suất","title":"Chẩn đoán nhanh theo áp suất, dòng điện","note":"Áp dụng cho máy thường dùng ống mao. Máy Inverter dùng van tiết lưu điện tử: áp suất, dòng thay đổi theo tốc độ máy nén, nên đo khi máy chạy chế độ chạy thử hoặc tải lớn.","src":"Sổ tay Điện lạnh dân dụng (tài liệu tham khảo của môn học) (tr. 60–70); kinh nghiệm chẩn đoán hệ thống lạnh.","head":["Tình trạng","Áp suất hút","Áp suất nén","Dòng điện","Dấu hiệu khác"],"rows":[["Máy bình thường, đủ gas","Chuẩn (R22 60–75, R410A 110–135, R32 115–140 psi)","Chuẩn","≈ dòng định mức trên tem","Gió vào – gió ra dàn lạnh chênh 8–12 °C; ống về mát, đọng sương tới van 3 ngã; dàn lạnh lạnh đều."],["Thiếu gas","Thấp","Thấp","Thấp","Dàn lạnh chỉ lạnh một phần, có thể bám tuyết đầu dàn; ống về không mát."],["Dư gas","Cao","Cao","Cao","Ống về lạnh buốt, đọng sương tới thân máy nén, có thể bám tuyết đường về; lạnh không sâu."],["Nghẹt ống mao, phin lọc","Rất thấp (có thể xuống âm)","Thấp hoặc bình thường","Thấp hoặc bình thường","Phin lọc, đầu ra ống mao có thể đọng sương, bám tuyết; nạp thêm gas áp hút tăng rất chậm; máy nén nóng."],["Máy nén yếu","Cao","Thấp","Thấp","Gió dàn nóng chỉ ấm, đầu đẩy < 50 °C; thu hồi gas không được."],["Dàn nóng bẩn, bí gió, quạt dàn nóng yếu","Cao hơn chuẩn","Rất cao","Cao","Gió dàn nóng rất nóng, OLP hay ngắt."],["Dàn lạnh bẩn, quạt dàn lạnh yếu","Thấp","Thấp","Thấp","Gió ra yếu, dàn lạnh bám tuyết."],["Lẫn không khí (chưa hút chân không)","Cao, kim dao động","Cao","Cao","Kém lạnh, máy nóng; phải xả gas, hút chân không, nạp lại."],["Tắc ẩm","Tụt dần về rất thấp rồi hồi lại theo chu kỳ","Thấp khi tắc","Thấp khi tắc","Lạnh – mất lạnh xen kẽ; đầu ra ống mao đóng băng rồi tan."]]},{"id":"ST11","cat":"Cân cáp","title":"Giá trị cân cáp (ống mao) theo loại gas, loại máy","note":"Cân cáp xong phải chạy thử. Dòng cao hơn chuẩn mà dàn lạnh không lạnh đều → cáp dài, cắt bớt, cân ở mức thấp hơn. Nạp đủ gas mà lạnh yếu, ống về lạnh buốt → cáp ngắn, cân cao hơn. Máy Inverter dùng van tiết lưu điện tử, không cân cáp.","src":"Sổ tay Điện lạnh dân dụng (tài liệu tham khảo của môn học) – \"Bảng giá trị cân cáp cho điều hòa và tủ lạnh\" (tr. 49, 104–105).","head":["Nhóm","Thiết bị","Gas","Giá trị cân cáp","Áp suất hút khi nạp gas"],"rows":[["Điều hòa không khí","Điều hòa, máy nén cũ","R22","60–80 psi","60–80 psi"],["Điều hòa không khí","Điều hòa, máy nén mới","R22","80–100 psi","60–80 psi"],["Điều hòa không khí","Điều hòa","R410A, R32","130–180 psi","R410A 110–135 psi; R32 115–140 psi"],["Tủ lạnh, tủ đông (tham khảo)","Tủ lạnh 1 cửa (ngăn đông −6 °C)","R134a","140–150 psi","—"],["Tủ lạnh, tủ đông (tham khảo)","Tủ lạnh 2 cửa không quạt (ngăn đông −12 °C)","R134a","150–160 psi","10–12 psi"],["Tủ lạnh, tủ đông (tham khảo)","Tủ lạnh 2 cửa có quạt (ngăn đông ≤ −18 °C)","R134a","180–210 psi","5–10 psi"],["Tủ lạnh, tủ đông (tham khảo)","Tủ lạnh 2 cửa có quạt (ngăn đông ≤ −18 °C)","R600a","300–350 psi","(−5)–0 psi"],["Tủ lạnh, tủ đông (tham khảo)","Tủ trữ đông (≤ −18 °C)","R134a","Lốc cũ 200–250 psi; lốc mới 300 psi","0–5 psi"],["Tủ lạnh, tủ đông (tham khảo)","Tủ trữ đông (≤ −18 °C)","R600a","330–350 psi","(−10)–0 psi"],["Tủ lạnh, tủ đông (tham khảo)","Tủ kem (≤ −26 °C)","R134a","220–250 psi","(−5)–0 psi"],["Tủ lạnh, tủ đông (tham khảo)","Tủ kem (≤ −26 °C)","R600a","330–350 psi","(−10)–0 psi"],["Tủ lạnh, tủ đông (tham khảo)","Tủ mát (1–10 °C)","R134a","120–160 psi","20–30 psi"],["Tủ lạnh, tủ đông (tham khảo)","Tủ mát (1–10 °C)","R600a","140–180 psi","0 psi"],["Tủ lạnh, tủ đông (tham khảo)","Máy nước nóng lạnh (5–10 °C)","R134a","90–140 psi","15 psi"]]},{"id":"ST12","cat":"Máy nén","title":"Công suất máy – dòng làm việc – tụ – dây, CB","note":"Luôn ưu tiên dòng định mức (Rated current) ghi trên tem dàn nóng. Dòng khởi động máy nén thường gấp 4–6 lần dòng làm việc. Máy Inverter: dòng thay đổi theo tải, lúc mới chạy cao, khi phòng đủ lạnh giảm nhiều.","src":"Tính theo I = P / (U × cos φ) với dữ liệu máy nén GMCC (catalog), Sổ tay Điện lạnh dân dụng (tài liệu tham khảo của môn học) (tr. 40, 46).","head":["Công suất máy","Năng suất lạnh","Công suất điện (máy thường)","Dòng làm việc (220 V)","Tụ máy nén","Dây – CB"],"rows":[["1 HP","9.000 Btu/h ≈ 2,6 kW","750–850 W","3,5–4,2 A","25–30 µF (hay dùng 30 µF)","1,5 mm² – CB 10 A"],["1,5 HP","12.000 Btu/h ≈ 3,5 kW","1.050–1.200 W","4,8–5,6 A","30–35 µF (hay dùng 35 µF)","1,5 mm² – CB 10 A"],["2 HP","18.000 Btu/h ≈ 5,3 kW","1.600–1.800 W","7,3–8,5 A","40–45 µF (hay dùng 40 µF)","2,5 mm² – CB 15 A"],["2,5 HP","24.000 Btu/h ≈ 7 kW","2.200–2.500 W","10–11,5 A","40–50 µF (hay dùng 45 µF)","3,5 mm² – CB 20 A"],["3 HP (1 pha)","28.000 Btu/h ≈ 8,2 kW","2.700–3.000 W","12,5–14 A","50–60 µF","4 mm² – CB 20–25 A"],["3 HP trở lên (3 pha 380 V)","≥ 28.000 Btu/h","≥ 2.700 W","4,5–5,5 A mỗi pha (3 HP)","Không dùng tụ","Dây 4 lõi 1,5–2,5 mm² – CB 3 pha 10–16 A; có rơ le bảo vệ pha"]]},{"id":"ST13","cat":"Máy nén","title":"Xác định công suất máy nén qua mã và dung tích","note":"Dung tích càng lớn, máy nén càng mạnh. Gas R410A, R32 làm lạnh mạnh hơn R22 nên cùng công suất thì máy nén nhỏ hơn. Quy ước mã của mỗi hãng khác nhau.","src":"Catalog máy nén rô to GMCC (quy tắc đặt mã, dung tích, năng suất); Sổ tay Điện lạnh dân dụng (tài liệu tham khảo của môn học) (tr. 49).","head":["Công suất máy","Dung tích máy nén R22 (cm³/vòng)","Dung tích máy nén R410A, R32 (cm³/vòng)","Ví dụ mã máy nén (GMCC/Toshiba)"],"rows":[["1 HP (≈ 2,6 kW)","≈ 16–18","≈ 9–11","PA108 (R410A, 10,8 cm³ ≈ 2,6 kW); KSM93 (R32, 9,2 cm³)"],["1,5 HP (≈ 3,5 kW)","≈ 22–24","≈ 12–15","DSM225 (R22, 22,5 cm³ ≈ 3,3 kW); KSM120 (R32, 12 cm³ ≈ 3 kW)"],["2 HP (≈ 5,3 kW)","≈ 33–36","≈ 19–22","PA200 (R410A, 20 cm³ ≈ 5 kW); KSG185 (R32, 18,5 cm³)"],["2,5 HP (≈ 7 kW)","≈ 45–48","≈ 27–29","ASG270 (R410A, 27,1 cm³ ≈ 6,9 kW); KTQ290 (R32, 29 cm³)"],["Cách đọc mã GMCC/Toshiba","3 chữ số trong mã = dung tích × 10 (vd 108 → 10,8 cm³/vòng)","Chữ cái thứ 2: H = R22, A = R410A, K = R32","Ước tính: năng suất lạnh (kW) ≈ dung tích × 0,15 (R22) hoặc × 0,25 (R410A, R32) ở 50 Hz"],["Cách chắc chắn nhất","Đọc tem trên thân máy nén: gas, điện áp, năng suất lạnh (W hoặc Btu/h), dòng RLA, LRA, tụ","","Thay máy nén cùng gas, cùng công suất; đo không gian lắp (vị trí bình tách lỏng) khi thay khác hãng."]]},{"id":"ST14","cat":"Máy nén","title":"Điện trở cuộn dây, cách điện và các thiết bị điện","note":"Đo khi đã ngắt điện, xả tụ, tháo dây khỏi cọc. Chờ máy nén nguội (OLP trong đóng lại) mới đo, nếu không sẽ thấy \"đứt\" giả.","src":"Kinh nghiệm đo kiểm; giá trị cụ thể tùy công suất, hãng – so sánh với máy cùng loại hoặc tài liệu hãng.","head":["Phép đo","Giá trị tham khảo","Đánh giá"],"rows":[["C – R (cuộn chạy, máy nén 1 pha)","Khoảng 1–3 Ω","Nhỏ nhất. ∞ = đứt; ≈ 0 = chập."],["C – S (cuộn đề)","Khoảng 2–6 Ω","Lớn hơn C – R."],["R – S","Bằng C – R + C – S","Lớn nhất trong 3 cặp. Dùng để xác định chân C."],["U – V, V – W, W – U (máy nén Inverter)","Ba giá trị bằng nhau, khoảng 0,5–3 Ω","Lệch nhau rõ rệt → chập vòng dây. Không cấp điện lưới trực tiếp cho máy nén Inverter."],["Cách điện cọc máy nén – vỏ (mêgôm kế 500 V)","≥ 2 MΩ","Dưới 1 MΩ: chạm vỏ hoặc ẩm, không được dùng."],["Rơ le nhiệt (OLP) ngoài, khi nguội","≈ 0 Ω (thông mạch)","∞ khi đã nguội → OLP hỏng."],["Cuộn dây van đảo chiều 4 ngã (220 V)","Khoảng 1–2 kΩ","∞ = đứt cuộn."],["Cuộn hút khởi động từ (contactor) 220 V","Khoảng 100–600 Ω (tùy loại)","∞ = đứt; ≈ 0 = chập."],["Mô tơ bước đảo gió (12 V)","Các cuộn bằng nhau, vài trăm Ω","Một cuộn ∞ → hỏng mô tơ."],["Dòng làm việc máy nén khi đủ gas","≈ dòng định mức trên tem (± 10%)","Cao bất thường: dàn nóng bẩn, dư gas, máy nén kém, điện áp thấp."]]},{"id":"ST15","cat":"Máy nén","title":"Tụ điện thay thế","note":"Không thay tụ quá nhỏ hoặc quá lớn so với công suất máy nén. Xả tụ trước khi đo, thay.","src":"Sổ tay Điện lạnh dân dụng (tài liệu tham khảo của môn học) – \"Lựa chọn tụ điện thay thế\" (tr. 46); catalog máy nén GMCC.","head":["Thiết bị","Trị số thường gặp","Điện áp tụ","Ghi chú"],"rows":[["Tụ máy nén 1 HP","25–30 µF (hay dùng 30)","≥ 370 VAC","Điện áp tụ ≥ 1,5 × 220 V = 330 V."],["Tụ máy nén 1,5 HP","30–35 µF (hay dùng 35)","≥ 370 VAC",""],["Tụ máy nén 2 HP","40–45 µF (hay dùng 40)","≥ 370 VAC",""],["Tụ máy nén 2,5 HP","40–50 µF (hay dùng 45)","≥ 370 VAC",""],["Tụ quạt dàn nóng","1,5–5 µF (hay gặp 2–3 µF)","450 VAC","Thay đúng trị số cũ."],["Tụ quạt dàn lạnh (mô tơ AC)","1–2,5 µF (hay gặp 1,5 µF)","450 VAC","Tụ yếu: quạt quay chậm, gió yếu."],["Tụ kép 3 cọc (C – HERM – FAN)","Ví dụ 35 + 2,5 µF","450 VAC","C nối chung với cọc R máy nén về một dây nguồn; HERM nối cọc S máy nén; FAN nối dây đề mô tơ quạt."],["Công thức ước tính tụ máy nén","C (µF) ≈ 1200 × I định mức / U","","Chỉ áp dụng cho tụ ngậm máy nén điều hòa 220 V."],["Sai số cho phép","± 10% so với trị số ghi trên tụ","","Tụ phồng, chảy dầu, nứt vỏ: thay ngay."]]},{"id":"ST16","cat":"Lắp đặt","title":"Ống đồng – lực siết rắc co – kích thước miệng loe","note":"Kích thước ống luôn theo bản vẽ lắp đặt của model. Siết bằng 2 cờ lê (một giữ thân van), bôi một ít dầu lạnh lên mặt loe. Ống R410A, R32 chịu áp cao: dùng ống đủ dày, dụng cụ loe đúng loại.","src":"Hướng dẫn lắp đặt máy điều hòa treo tường của Daikin (bảng lực siết, kích thước loe).","head":["Cỡ ống","Đường kính ngoài","Thường dùng cho","Lực siết rắc co","Miệng loe A (R410A, R32)","Độ dày ống tối thiểu"],"rows":[["1/4\"","6,35 mm","Ống lỏng máy 9.000–24.000 Btu/h","14–17 N·m","8,7–9,1 mm","0,8 mm"],["3/8\"","9,52 mm","Ống hơi máy 9.000–12.000 Btu/h","33–40 N·m","12,8–13,2 mm","0,8 mm"],["1/2\"","12,7 mm","Ống hơi máy 18.000 Btu/h","50–60 N·m","16,2–16,6 mm","0,8 mm"],["5/8\"","15,88 mm","Ống hơi máy 21.000–24.000 Btu/h","62–75 N·m","19,3–19,7 mm","1,0 mm"]]},{"id":"ST17","cat":"Lắp đặt","title":"Chiều dài, chiều cao đường ống tối đa (tham khảo)","note":"Vượt giới hạn: giảm công suất, dầu khó hồi về máy nén, có thể bị từ chối bảo hành. Dàn nóng đặt cao hơn dàn lạnh và vượt chiều cao cho phép → làm bẫy dầu trên ống hút, cách nhau 3–5 m. Chiều dài tối thiểu theo hãng (thường 1,5–3 m).","src":"Sổ tay Điện lạnh dân dụng (tài liệu tham khảo của môn học) – \"Chiều cao và chiều dài ống tối đa khi lắp đặt\" (tr. 44–45).","head":["Loại máy","Công suất","Chênh lệch cao tối đa","Chiều dài ống tối đa"],"rows":[["Inverter","1 HP (9.000 Btu/h)","15 m","20 m"],["Inverter","1,5 HP (12.000 Btu/h)","15 m","20 m"],["Inverter","2 HP (18.000 Btu/h)","20 m","30 m"],["Thường (Non-Inverter)","1 HP (9.000 Btu/h)","5 m","10 m"],["Thường (Non-Inverter)","1,5 HP (12.000 Btu/h)","5 m","15 m"],["Thường (Non-Inverter)","2 HP (18.000 Btu/h)","20 m","25 m"]]},{"id":"ST18","cat":"Lắp đặt","title":"Chọn dây dẫn và aptomat (CB) theo công suất","note":"Không chọn CB quá lớn so với dây (vd máy 1 HP dây 1,5 mm² mà dùng CB 30–40 A): khi chập điện CB không ngắt, gây cháy dây. Nên dùng CB chống giật và nối đất cho máy.","src":"Sổ tay Điện lạnh dân dụng (tài liệu tham khảo của môn học) – \"Chọn dây dẫn và aptomat phù hợp công suất máy\" (tr. 39–41).","head":["Công suất","Dòng chạy","Tiết diện dây","Aptomat (CB)"],"rows":[["1 HP (9.000 Btu/h) – 1,5 HP (13.000 Btu/h)","3–6 A","1,5 mm²","10 A"],["2 HP (18.000 Btu/h)","7–8 A","2,5 mm²","15 A"],["2,5 HP (22.000 Btu/h)","11–12 A","3,5 mm²","20 A"],["Công thức","I = P / 220","S (mm²) = Icb / 6","Icb = 1,5 × I, chọn CB có sẵn gần nhất"]]},{"id":"ST19","cat":"Lắp đặt","title":"Tính công suất máy theo phòng","note":"V phòng = dài × rộng × cao (m³). Phòng mái tôn, tầng trên cùng, nhiều kính cần cộng thêm công suất.","src":"Sổ tay Điện lạnh dân dụng (tài liệu tham khảo của môn học) – \"Tính toán chọn công suất máy\" và \"Nhận biết công suất máy\" (tr. 37–39).","head":["Cách tính","Công thức","Hệ số"],"rows":[["Theo mục đích sử dụng","Công suất (Btu/h) = V phòng × 36 × K1 + số người × K2","K1: phòng ngủ 5; phòng khách, phòng ăn, văn phòng 6; nhà hàng 7. K2: người lớn 600; trẻ em 300."],["Theo chênh lệch nhiệt độ, độ cách nhiệt","Công suất (Btu/h) = V phòng × (t ngoài − t trong) × K3","K3: tường cách nhiệt tốt 20–25; có cửa sổ kính 25–30; nhiều cửa kính 30–40; tường kính lớn 45. Nên lấy t ngoài 35 °C, t trong 25 °C."],["Ví dụ","Phòng ngủ 4 × 4 × 3 m, 2 người lớn: 48 × 36 × 5 + 2 × 600 = 9.840 Btu/h","Chọn máy 12.000 Btu/h (1,5 HP)."],["Nhận biết công suất máy","Xem năng suất lạnh trên tem (Btu/h hoặc kW); số đầu trong model thường là nghìn Btu/h (09, 12, 18, 24)","Daikin ghi theo kW: 25 = 2,5 kW (1 HP), 35 = 3,5 kW (1,5 HP), 50 = 5 kW (2 HP)."]]},{"id":"ST20","cat":"Cảm biến","title":"Trị số cảm biến nhiệt (NTC) theo hãng","note":"Giá trị đo ở nhiệt độ phòng khoảng 30 °C, do đơn vị vật tư cung cấp và kinh nghiệm thực tế; có thể lệch vài kΩ so với nhà sản xuất. Cảm biến NTC: nóng lên thì điện trở giảm. Máy thường (Mono) không có cảm biến ngoài trời.","src":"Sổ tay Điện lạnh dân dụng (tài liệu tham khảo của môn học) – \"Bảng trị số sensor của điều hòa không khí\" (tr. 106–107).","head":["Hãng","Đầu đẩy máy nén","Dàn ngưng (dàn nóng)","Ngoài trời","Dàn bay hơi (ống đồng dàn lạnh)","Nhiệt độ phòng"],"rows":[["Daikin (R32)","16 kΩ","16 kΩ","16 kΩ","16 kΩ","8 kΩ"],["LG","200–230 kΩ","7 kΩ","10 kΩ","4,7 kΩ","4,7 kΩ"],["Panasonic","43 kΩ (cảm biến trên máy nén 40 kΩ)","3 kΩ","12,5 kΩ","17 kΩ","12 kΩ"],["Sharp","28–45 kΩ","4,7 kΩ","4,7 kΩ","10 kΩ","7,5 kΩ"],["Toshiba – Carrier","41 kΩ","7,9 kΩ","7,9 kΩ","7,9 kΩ","7,9 kΩ"],["Hitachi","28–45 kΩ","4,7 kΩ","4,7 kΩ","7,5 kΩ","7,5 kΩ"],["Funiki","28–45 kΩ","4,7 kΩ","4,7 kΩ","4,7 kΩ","4,7 kΩ"],["Mitsubishi – Fujitsu","28–45 kΩ","7,5 kΩ","7,5 kΩ","4,7 kΩ","4,7 kΩ"],["Samsung","200 kΩ","—","—","8,5 kΩ","8,5 kΩ"],["TCL – Midea – Gree","—","—","—","4,7 kΩ","4,7 kΩ"],["Nagakawa A126–A188","—","—","—","9 kΩ","9 kΩ"],["Nagakawa NS-C132","—","—","—","4,7 kΩ","4,7 kΩ"],["Sumikura","200 kΩ","—","—","154 kΩ","15 kΩ"],["Reetech","—","—","—","7 kΩ","9 kΩ"]]},{"id":"ST21","cat":"Quy trình","title":"Các quy trình thực hiện","note":"Mỗi quy trình gồm nhiều bước. Làm đúng thứ tự, đủ dụng cụ, đúng bảo hộ lao động.","src":"Sổ tay Điện lạnh dân dụng (tài liệu tham khảo của môn học) (hút chân không tr. 25–27; cân cáp tr. 49; ẩm tr. 20; dây cùng màu tr. 41); hướng dẫn lắp đặt của các hãng; bài giảng MĐ 19.","head":["Quy trình","Bước","Nội dung","Lưu ý"],"rows":[["Hút chân không – dàn nóng còn gas (lắp máy mới, đang nhốt gas)","1","Nối ống đồng, dây điện xong. KHÔNG mở van 2 ngã và van 3 ngã.",""],["Hút chân không – dàn nóng còn gas (lắp máy mới, đang nhốt gas)","2","Gắn dây xanh của đồng hồ vào cổng nạp van 3 ngã, dây vàng (dây giữa) vào bơm chân không. Mở van xanh trên đồng hồ.","Đồng hồ phía cao áp để trống."],["Hút chân không – dàn nóng còn gas (lắp máy mới, đang nhốt gas)","3","Bật bơm, chờ kim về −76 cmHg (−30 inHg, −0,1 MPa) rồi cho bơm chạy thêm ít nhất 10–15 phút.","Có đồng hồ micron: đạt ≤ 500 micron."],["Hút chân không – dàn nóng còn gas (lắp máy mới, đang nhốt gas)","4","Khóa van xanh trên đồng hồ RỒI MỚI tắt bơm.","Luôn khóa van đồng hồ trước khi tắt bơm để không khí, dầu bơm không lọt ngược vào ống."],["Hút chân không – dàn nóng còn gas (lắp máy mới, đang nhốt gas)","5","Chờ 5–10 phút quan sát kim: đứng yên là đạt. Kim tăng → còn xì hoặc còn ẩm, kiểm tra lại.",""],["Hút chân không – dàn nóng còn gas (lắp máy mới, đang nhốt gas)","6","Dùng lục giác mở hết van 2 ngã, rồi van 3 ngã; tháo đồng hồ, lắp lại nắp van, nắp cổng nạp; cho máy chạy thử.",""],["Hút chân không – hệ thống hết gas hoàn toàn","1","Xử lý xong điểm xì, thử kín đạt.",""],["Hút chân không – hệ thống hết gas hoàn toàn","2","Mở van 2 ngã và van 3 ngã (để hút cả dàn nóng, dàn lạnh và đường ống).",""],["Hút chân không – hệ thống hết gas hoàn toàn","3","Gắn dây xanh vào cổng nạp van 3 ngã, dây vàng vào bơm; mở van xanh trên đồng hồ.",""],["Hút chân không – hệ thống hết gas hoàn toàn","4","Bật bơm đến −76 cmHg, chạy thêm ít nhất 10–15 phút; hệ thống từng bị ẩm thì hút ít nhất 30 phút.",""],["Hút chân không – hệ thống hết gas hoàn toàn","5","Khóa van đồng hồ rồi tắt bơm; chờ 5–10 phút kim không dịch chuyển.",""],["Hút chân không – hệ thống hết gas hoàn toàn","6","Nạp tĩnh một ít gas (hoặc nạp theo cân), cho máy chạy rồi nạp bổ sung đến khi đạt yêu cầu.",""],["Thử kín bằng nitơ","1","Nối bình nitơ qua van giảm áp → đồng hồ → cổng nạp van 3 ngã. Máy mới: van 2 ngã, 3 ngã vẫn đóng.","Tuyệt đối không dùng ô xy hoặc khí nén để thử kín."],["Thử kín bằng nitơ","2","Nạp thử sơ bộ khoảng 50 psi, kiểm tra rò lớn ở các rắc co.",""],["Thử kín bằng nitơ","3","Tăng từ từ đến áp suất thử: R22 150–250 psi; R410A, R32 300–550 psi (theo hướng dẫn hãng).",""],["Thử kín bằng nitơ","4","Khóa van, ghi lại áp suất và nhiệt độ; giữ ít nhất 30 phút (công trình lớn giữ 24 giờ).","Nhiệt độ môi trường thay đổi làm áp suất thay đổi nhẹ."],["Thử kín bằng nitơ","5","Áp giảm → bôi nước xà phòng tìm điểm xì, xử lý rồi thử lại.",""],["Thử kín bằng nitơ","6","Đạt yêu cầu: xả nitơ ra ngoài, chuyển sang hút chân không.",""],["Nạp gas R22 (nạp hơi, theo áp suất – dòng điện)","1","Đọc tem máy xác định đúng loại gas; chuẩn bị đồng hồ, ampe kìm, bình gas R22.",""],["Nạp gas R22 (nạp hơi, theo áp suất – dòng điện)","2","Gắn dây xanh vào cổng nạp van 3 ngã, dây vàng vào bình gas; xả đuổi khí trong dây nạp.",""],["Nạp gas R22 (nạp hơi, theo áp suất – dòng điện)","3","Cho máy chạy lạnh, cài nhiệt độ thấp nhất, quạt mạnh; chờ 10–15 phút cho ổn định, đo dòng và áp suất.",""],["Nạp gas R22 (nạp hơi, theo áp suất – dòng điện)","4","Dựng đứng bình (nạp hơi), mở van đồng hồ từng đợt ngắn, theo dõi áp suất hút và dòng điện.",""],["Nạp gas R22 (nạp hơi, theo áp suất – dòng điện)","5","Dừng khi áp hút 60–75 psi, dòng gần bằng định mức, dàn lạnh lạnh đều, ống về mát và đọng sương tới van 3 ngã nhưng không đóng tuyết.","Chênh nhiệt độ gió vào – gió ra dàn lạnh 8–12 °C."],["Nạp gas R22 (nạp hơi, theo áp suất – dòng điện)","6","Khóa van, tháo dây nhanh, lắp nắp cổng nạp, thử xì nắp van.",""],["Nạp gas R410A (nạp lỏng)","1","Dùng đồng hồ, dây nạp loại chịu áp cao cho R410A.",""],["Nạp gas R410A (nạp lỏng)","2","Gắn dây như nạp R22, xả đuổi khí trong dây.",""],["Nạp gas R410A (nạp lỏng)","3","Cho máy chạy lạnh, cài nhiệt độ thấp nhất, quạt mạnh, chờ ổn định.",""],["Nạp gas R410A (nạp lỏng)","4","Dốc ngược bình gas để lấy gas LỎNG; mở van đồng hồ thật hé, từng chút một để gas lỏng kịp hóa hơi trước khi vào máy nén.","Nạp nhanh làm lỏng tràn về máy nén, gây va đập thủy lực."],["Nạp gas R410A (nạp lỏng)","5","Dừng khi áp hút 110–135 psi, dòng gần định mức, dàn lạnh lạnh đều.",""],["Nạp gas R410A (nạp lỏng)","6","Máy xì hết hoặc xì nhiều: nên xả bỏ, hút chân không và nạp lại toàn bộ theo cân để đúng tỉ lệ hỗn hợp.",""],["Nạp gas R32","1","Thông gió nơi làm việc, cấm lửa, không hút thuốc; dùng đồng hồ, bơm, dây nạp dùng cho R32.","R32 cháy nhẹ (A2L)."],["Nạp gas R32","2","Máy đã hết gas: hút chân không đạt, đặt bình lên cân điện tử, nạp đúng khối lượng ghi trên tem (cộng phần nạp thêm theo chiều dài ống).","Máy R32 chứa ít gas, rất nhạy với lượng gas nên ưu tiên nạp theo cân."],["Nạp gas R32","3","Nạp bổ sung khi máy chạy: R32 là gas đơn chất nên có thể nạp hơi; nạp từng chút, theo dõi áp hút 115–140 psi và dòng điện.",""],["Nạp gas R32","4","Khóa van, tháo dây, lắp nắp, thử xì.",""],["Nạp gas theo cân (hệ thống đã hút chân không)","1","Đặt bình gas lên cân điện tử, nối dây vàng từ bình về đồng hồ, xả đuổi khí, trừ bì (đưa cân về 0).",""],["Nạp gas theo cân (hệ thống đã hút chân không)","2","Tính lượng gas: khối lượng trên tem + (chiều dài ống thực − chiều dài tiêu chuẩn) × g/m.","Xem bảng \"Nạp gas bổ sung theo chiều dài ống\"."],["Nạp gas theo cân (hệ thống đã hút chân không)","3","Máy chưa chạy: mở van đồng hồ cho gas vào (R410A dốc ngược bình nạp lỏng) đến khi cân giảm đúng lượng cần nạp.",""],["Nạp gas theo cân (hệ thống đã hút chân không)","4","Gas không vào hết: cho máy chạy lạnh rồi nạp tiếp từ từ đến đủ khối lượng.",""],["Nạp gas theo cân (hệ thống đã hút chân không)","5","Khóa van, tháo dây; chạy thử kiểm tra áp suất, dòng điện.",""],["Thu hồi gas về dàn nóng (nhốt gas)","1","Gắn đồng hồ vào cổng nạp van 3 ngã. Cho máy chạy lạnh 10–15 phút (máy Inverter: chạy chế độ chạy thử, cưỡng bức làm lạnh).",""],["Thu hồi gas về dàn nóng (nhốt gas)","2","Dùng lục giác khóa van 2 ngã (đường lỏng).",""],["Thu hồi gas về dàn nóng (nhốt gas)","3","Theo dõi kim áp hút giảm dần; khi kim về 0 psi thì khóa ngay van 3 ngã.","Không để máy nén chạy lâu khi áp hút đã âm."],["Thu hồi gas về dàn nóng (nhốt gas)","4","Tắt máy, ngắt CB.",""],["Thu hồi gas về dàn nóng (nhốt gas)","5","Mới được tháo rắc co, tháo ống. Bịt kín đầu ống để không bụi, ẩm lọt vào.","Không tháo ống khi máy nén đang chạy: không khí bị hút vào có thể gây nổ máy nén."],["Cân cáp (thay, chỉnh ống mao)","1","Chuẩn bị ống mao, phin lọc mới cùng loại; để ống mao dài hơn ước tính một chút.",""],["Cân cáp (thay, chỉnh ống mao)","2","Hàn phin lọc vào đường ra dàn ngưng và hàn ống mao vào phin; đầu ra ống mao để hở ra ngoài không khí (chưa nối vào dàn lạnh).",""],["Cân cáp (thay, chỉnh ống mao)","3","Gắn đồng hồ cao áp vào đường đẩy (phía trước phin lọc); đầu hút máy nén để hở cho máy nén hút không khí.",""],["Cân cáp (thay, chỉnh ống mao)","4","Cấp điện cho máy nén chạy (đấu tụ đúng), chờ 1–2 phút kim ổn định, đọc áp suất.",""],["Cân cáp (thay, chỉnh ống mao)","5","So với bảng: R22 máy nén cũ 60–80 psi, máy nén mới 80–100 psi; R410A, R32 130–180 psi. Áp cao hơn → cắt bớt ống mao từng đoạn ngắn rồi đo lại; áp thấp hơn → ống mao ngắn, thay ống dài hơn.",""],["Cân cáp (thay, chỉnh ống mao)","6","Hàn ống mao vào hệ thống rồi đo lại một lần nữa để chắc chắn không bị nghẹt do hàn.",""],["Cân cáp (thay, chỉnh ống mao)","7","Thử kín, hút chân không kỹ, nạp gas, chạy thử: dòng điện, áp suất, dàn lạnh lạnh đều, ống về mát.",""],["Kiểm tra máy nén còn dùng được (máy nén thường 1 pha)","1","Ngắt CB, xả tụ; chờ máy nén nguội (dưới khoảng 60 °C) để rơ le nhiệt trong đóng lại; có thể tưới nước làm nguội, tránh cọc điện.",""],["Kiểm tra máy nén còn dùng được (máy nén thường 1 pha)","2","Quan sát: vỏ phồng, cọc cháy, dầu loang, mùi khét.",""],["Kiểm tra máy nén còn dùng được (máy nén thường 1 pha)","3","Tháo dây khỏi cọc, đo điện trở C – R, C – S, R – S. Đạt: R – S ≈ C – R + C – S và C – S > C – R. Một cặp ∞ = đứt; rất nhỏ hoặc 0 = chập.","Xem bảng \"Điện trở cuộn dây\"."],["Kiểm tra máy nén còn dùng được (máy nén thường 1 pha)","4","Đo cách điện từng cọc với vỏ bằng mêgôm kế 500 V: ≥ 2 MΩ đạt; dưới 1 MΩ không dùng. Đồng hồ vạn năng thang lớn nhất phải chỉ ∞.",""],["Kiểm tra máy nén còn dùng được (máy nén thường 1 pha)","5","Đo tụ máy nén (sai lệch ≤ ± 10%), đo OLP ngoài thông mạch.",""],["Kiểm tra máy nén còn dùng được (máy nén thường 1 pha)","6","Chạy thử độc lập: C nối N (kẹp ampe kìm), R nối L, tụ nối giữa R và S. Cấp điện ngắn để nghe tiếng chạy và đo dòng.","Máy nén chỉ kêu ù, dòng rất cao, OLP ngắt → kẹt cơ."],["Kiểm tra máy nén còn dùng được (máy nén thường 1 pha)","7","Kiểm tra khả năng nén trên hệ thống: thu hồi gas được (áp hút về 0) và khi chạy áp hút giảm, áp nén tăng rõ → máy nén còn nén tốt. Thu hồi không được → máy nén yếu.",""],["Kiểm tra máy nén còn dùng được (máy nén thường 1 pha)","8","Kết luận: cuộn dây tốt, cách điện tốt, chạy êm, dòng ≈ định mức, nén tốt → dùng được.",""],["Kiểm tra máy nén Inverter","1","Ngắt điện, chờ tụ lọc trên board dàn nóng xả hết (đèn báo tắt, đo DC < 10 V).","Tụ lọc DC trên board có thể còn hơn 300 V."],["Kiểm tra máy nén Inverter","2","Tháo giắc U, V, W; đo 3 cặp U – V, V – W, W – U: phải bằng nhau (khoảng 0,5–3 Ω).",""],["Kiểm tra máy nén Inverter","3","Đo cách điện 3 cọc với vỏ ≥ 2 MΩ.",""],["Kiểm tra máy nén Inverter","4","Kiểm tra IPM trên board (đo diode các pha) trước khi kết luận máy nén hỏng.",""],["Kiểm tra máy nén Inverter","5","Không cấp điện lưới trực tiếp vào máy nén Inverter; chạy thử bằng board hoặc thiết bị thử máy nén Inverter.",""],["Xác định chân C – R – S máy nén","1","Đặt tên 3 cọc là 1, 2, 3; đo điện trở 3 cặp 1–2, 2–3, 1–3.",""],["Xác định chân C – R – S máy nén","2","Cặp có điện trở lớn nhất là R – S; cọc còn lại là C (chân chung).",""],["Xác định chân C – R – S máy nén","3","Từ C đo sang 2 cọc kia: cọc có điện trở nhỏ hơn là R (cuộn chạy), lớn hơn là S (cuộn đề).",""],["Xác định chân C – R – S máy nén","4","Đấu: C về N qua OLP; R về L; tụ ngậm nối giữa R và S.",""],["Kiểm tra, thay tụ","1","Ngắt điện; xả tụ bằng điện trở (vd 20 kΩ – 5 W) hoặc dụng cụ xả, không chập trực tiếp hai cọc.",""],["Kiểm tra, thay tụ","2","Ghi lại vị trí dây, tháo tụ; quan sát phồng, chảy dầu, nứt vỏ.",""],["Kiểm tra, thay tụ","3","Đo điện dung bằng đồng hồ có thang µF (Cx): so với trị số ghi trên tụ, sai lệch > ± 10% → thay.",""],["Kiểm tra, thay tụ","4","Thay tụ đúng µF, điện áp ≥ 370 VAC (tụ quạt 450 VAC); đấu đúng vị trí, siết chặt, cố định tụ.",""],["Kiểm tra cảm biến nhiệt (NTC)","1","Ngắt điện, rút giắc cảm biến khỏi board; quan sát giắc ô xy hóa, dây đứt.",""],["Kiểm tra cảm biến nhiệt (NTC)","2","Đo điện trở ở nhiệt độ phòng, so với bảng \"Trị số cảm biến\" (cùng hãng, cùng vị trí).",""],["Kiểm tra cảm biến nhiệt (NTC)","3","Nắm tay vào đầu cảm biến: điện trở giảm dần là còn tốt. Không đổi, ∞ hoặc ≈ 0 → hỏng.",""],["Kiểm tra cảm biến nhiệt (NTC)","4","Thay cảm biến cùng trị số, cùng kiểu giắc; cố định đúng vị trí trên ống, có ống lồng, kẹp.",""],["Tìm điểm xì gas","1","Quan sát vết dầu loang ở rắc co, đầu nạp, van, dàn nóng, dàn lạnh, máng nước.",""],["Tìm điểm xì gas","2","Bôi nước rửa chén pha loãng lên chỗ nghi ngờ (không tạo bọt sẵn, vì bọt to che mất xì nhỏ li ti).",""],["Tìm điểm xì gas","3","Không thấy: thu hồi gas, nạp nitơ áp cao để thử; dùng máy dò gas điện tử nếu có.",""],["Tìm điểm xì gas","4","Vẫn không thấy: cô lập từng phần (đường ống, dàn lạnh, dàn nóng), nạp nitơ riêng từng phần, giữ 24 giờ.",""],["Tìm điểm xì gas","5","Xử lý: loe lại, siết lại, hàn lại hoặc thay dàn; sau đó thử kín, hút chân không, nạp gas.","Hàn trên hệ thống R32 phải xả hết gas, thông gió kỹ."],["Vệ sinh, bảo dưỡng định kỳ máy treo tường","1","Trước khi làm: cho máy chạy, đo dòng, áp suất, nhiệt độ gió ra; hỏi khách tình trạng máy.",""],["Vệ sinh, bảo dưỡng định kỳ máy treo tường","2","Ngắt CB. Tháo mặt nạ, lưới lọc; bọc kín board, mô tơ bằng túi nilon; lắp áo trùm hứng nước.",""],["Vệ sinh, bảo dưỡng định kỳ máy treo tường","3","Xịt rửa dàn lạnh bằng máy xịt áp lực vừa, xịt xuôi theo lá nhôm; vệ sinh lồng sóc, máng nước.",""],["Vệ sinh, bảo dưỡng định kỳ máy treo tường","4","Đổ nước thử, thông ống thoát nước.",""],["Vệ sinh, bảo dưỡng định kỳ máy treo tường","5","Rửa lưới lọc, để khô nơi râm mát rồi lắp lại.",""],["Vệ sinh, bảo dưỡng định kỳ máy treo tường","6","Dàn nóng: che hộp điện, xịt từ trong ra ngoài (ngược chiều gió); kiểm tra quạt, siết lại cầu đấu, đầu cos.",""],["Vệ sinh, bảo dưỡng định kỳ máy treo tường","7","Kiểm tra tụ, dây điện, bảo ôn ống, giá đỡ; xử lý chỗ hư hỏng.",""],["Vệ sinh, bảo dưỡng định kỳ máy treo tường","8","Lắp lại, chạy thử 15–20 phút: đo dòng, áp suất, chênh nhiệt độ gió (8–12 °C); nước thoát tốt; ghi phiếu bảo dưỡng.","Chu kỳ: gia đình 3–6 tháng; văn phòng, nhà hàng 1–3 tháng."],["Xử lý hệ thống bị ẩm (tắc ẩm)","1","Dấu hiệu: lạnh – mất lạnh xen kẽ, đầu ra ống mao đóng băng rồi tan, áp hút tụt sâu rồi hồi lại.",""],["Xử lý hệ thống bị ẩm (tắc ẩm)","2","Thu hồi gas, thổi nitơ dàn lạnh, dàn nóng, ống mao. Không dùng máy nén khí để thổi.",""],["Xử lý hệ thống bị ẩm (tắc ẩm)","3","Thay phin lọc mới; ẩm nặng thì thay dầu máy nén (có thể 2–3 lần).",""],["Xử lý hệ thống bị ẩm (tắc ẩm)","4","Hút chân không ít nhất 30 phút, có thể hơ nóng dàn bằng máy sấy, đèn công suất lớn để hơi nước bay hơi nhanh.",""],["Xử lý hệ thống bị ẩm (tắc ẩm)","5","Nạp gas mới, chạy thử theo dõi lâu hơn bình thường.",""],["Thay máy nén","1","Kiểm tra chắc chắn máy nén hỏng (quy trình kiểm tra máy nén). Chọn máy nén cùng gas, cùng công suất, điện áp; kiểm tra kích thước, vị trí bình tách lỏng.",""],["Thay máy nén","2","Thu hồi gas; ngắt điện, ghi nhớ vị trí dây, tháo dây.",""],["Thay máy nén","3","Cắt hoặc hàn tách ống hút, ống đẩy; tháo máy nén cũ.",""],["Thay máy nén","4","Máy nén cũ cháy (dầu đen, mùi khét): súc rửa hệ thống, thay phin lọc, thay ống mao.",""],["Thay máy nén","5","Lắp máy nén mới (giữ nút bịt đến lúc hàn); hàn có thổi nitơ bảo vệ, quấn khăn ướt chống nóng van.",""],["Thay máy nén","6","Thử kín, hút chân không kỹ, nạp đúng loại và đủ lượng gas; lắp tụ mới đúng µF; đấu đúng C – R – S.",""],["Thay máy nén","7","Chạy thử: đo dòng, áp suất, nhiệt độ; cân chỉnh nếu cần.",""],["Đánh số dây nối khi 3 dây cùng màu","1","Ở dàn nóng: nối tạm 2 đầu dây bất kỳ với nhau, dây thứ 3 để trống.",""],["Đánh số dây nối khi 3 dây cùng màu","2","Ở dàn lạnh: đo thông mạch từng cặp đầu dây; cặp nào thông thì dây còn lại là dây số 3 (đánh dấu cả 2 đầu).",""],["Đánh số dây nối khi 3 dây cùng màu","3","Ở dàn nóng: nối dây số 3 với 1 trong 2 dây còn lại; vào dàn lạnh đo tiếp, cặp nào thông thì dây vừa nối với dây số 3 là số 2; dây còn lại là số 1.",""],["Kiểm tra board dàn lạnh không cấp nguồn ra dàn nóng","1","Bật chế độ COOL, cài nhiệt độ thấp hơn nhiệt độ phòng ít nhất 2 °C.",""],["Kiểm tra board dàn lạnh không cấp nguồn ra dàn nóng","2","Chờ 3–5 phút (thời gian bảo vệ máy nén), lắng nghe tiếng đóng rơ le trên board.",""],["Kiểm tra board dàn lạnh không cấp nguồn ra dàn nóng","3","Đo 220 V tại chân cấp nguồn ra dàn nóng trên cầu đấu dàn lạnh.",""],["Kiểm tra board dàn lạnh không cấp nguồn ra dàn nóng","4","Không có điện → kiểm tra cảm biến phòng, cảm biến ống (sai trị số board không cho chạy); cảm biến tốt → sửa board (rơ le, mạch kích).",""],["Kiểm tra board dàn lạnh không cấp nguồn ra dàn nóng","5","Có điện ở dàn lạnh nhưng dàn nóng không có → kiểm tra dây nối giữa 2 dàn.",""]]},{"id":"ST22","cat":"Quy đổi – công thức","title":"Quy đổi đơn vị và công thức hay dùng","note":"","src":"Quy đổi đơn vị chuẩn; Sổ tay Điện lạnh dân dụng (tài liệu tham khảo của môn học) (tr. 39–40, 46).","head":["Đại lượng","Quy đổi – công thức","Ví dụ"],"rows":[["Công suất","1 HP = 746 W ≈ 0,75 kW (công suất điện)","Máy \"1 ngựa\" ≈ 9.000 Btu/h ≈ 2,6 kW lạnh"],["Năng suất lạnh","1 kW = 3.412 Btu/h; 1.000 Btu/h ≈ 0,293 kW","12.000 Btu/h ≈ 3,5 kW = 1 tấn lạnh (RT)"],["Áp suất","1 bar = 14,5 psi = 100 kPa = 0,1 MPa; 1 psi ≈ 6,9 kPa ≈ 0,069 bar","120 psi ≈ 8,3 bar ≈ 0,83 MPa"],["Áp suất tuyệt đối","Áp suất tuyệt đối = áp suất đồng hồ + 1,013 bar (14,7 psi)","Đồng hồ 0 psi = 1 atm tuyệt đối"],["Chân không","−76 cmHg = −30 inHg ≈ −0,1 MPa ≈ −1 bar (đồng hồ); 1 torr = 1.000 micron ≈ 133 Pa","Mục tiêu hút chân không ≤ 500 micron"],["Nhiệt độ","°F = °C × 1,8 + 32; °C = (°F − 32) / 1,8","25 °C = 77 °F"],["Dòng điện 1 pha","I = P / (U × cos φ)","835 W / 220 V ≈ 3,8 A"],["Dòng điện 3 pha","I = P / (1,73 × U × cos φ)","3.000 W, 380 V, cos φ 0,9 → ≈ 5,1 A"],["Chọn CB và dây","Icb = 1,5 × I; S (mm²) = Icb / 6","I = 3,8 A → Icb ≈ 5,7 A → chọn CB 10 A, dây 1,5 mm² trở lên"],["Tụ máy nén","C (µF) ≈ 1200 × I định mức / U","Chỉ cho tụ ngậm máy nén 220 V"],["Công suất phòng","Q = V × 36 × K1 + số người × K2; Q = V × Δt × K3","Xem bảng \"Tính công suất máy theo phòng\""],["Nạp gas thêm","m = (L thực − L chuẩn) × g/m","R32, ống 1/4\", 12 m, chuẩn 7,5 m → 4,5 × 12 = 54 g"],["Đánh giá làm lạnh","Chênh nhiệt độ gió vào – gió ra dàn lạnh 8–12 °C","Gió vào 28 °C → gió ra khoảng 16–20 °C"]]}]};</script>
+<script>/* ===== Tra cứu nhanh + Sổ tay bảo dưỡng, sửa chữa điều hòa dân dụng ===== */
+(function(){
+'use strict';
+const $=(s,r)=>(r||document).querySelector(s), $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+const LS={get(k,d){try{const v=localStorage.getItem('md19_'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('md19_'+k,JSON.stringify(v))}catch(e){}}};
+const HTML=document.documentElement;
+const AUTHOR='Tác giả: Huỳnh Hào Kiệt - Trường Trung cấp nghề Diên Khánh';
+const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const toast=t=>{try{window.__toast&&window.__toast(t)}catch(e){}};
+const deck=()=>window.__deck;
+
+/* ================= TEXT MATCHING (không phân biệt dấu) =================
+   fold() keeps the length of the text, so a match found in the folded text points at the same place in the original. */
+const FC=new Map();
+function foldCh(c){
+  let f=FC.get(c);if(f!==undefined)return f;
+  if(c==='đ'||c==='Đ')f='d';else if(c==='µ'||c==='μ')f='u';
+  else{f=(c.normalize('NFKD').replace(/[̀-ͯ]/g,'').toLowerCase()[0])||' ';if(!/[a-z0-9]/.test(f))f=' '}
+  FC.set(c,f);return f;
+}
+function fold(s){s=String(s==null?'':s);let o='';for(let i=0;i<s.length;i++)o+=foldCh(s[i]);return o}
+let UNI=true;try{new RegExp('\\p{L}','u')}catch(e){UNI=false}
+const NONW=UNI?new RegExp('[^\\p{L}\\p{N}]','gu'):/[\s.,;:!?()\[\]{}"'\/\\|<>+=*&^%$#@~`–—−-]/g;
+/* old/new tone placement (hoà ~ hòa, uý ~ úy) → one form */
+const TONE={'oà':'òa','oá':'óa','oả':'ỏa','oã':'õa','oạ':'ọa','oè':'òe','oé':'óe','oẻ':'ỏe','oẽ':'õe','oẹ':'ọe','uỳ':'ùy','uý':'úy','uỷ':'ủy','uỹ':'ũy','uỵ':'ụy'};
+const TONE_RE=new RegExp(Object.keys(TONE).join('|'),'g');
+function low(s){return String(s).toLowerCase().replace(TONE_RE,m=>TONE[m]).replace(NONW,m=>' '.repeat(m.length))}
+function fld(s){s=String(s==null?'':s).normalize('NFC');return{t:s,n:fold(s),l:null}}
+function L(f){if(f.l==null)f.l=f.t.length===f.n.length?low(f.t):f.n;return f.l}
+const reEsc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+
+/* synonym groups: words people type → words used in the lesson and the handbook */
+const SYN=[
+ [['máy nén','may nen','block','blốc','bloc','lốc','lock','compressor'],['may nen','block','bloc','compressor']],
+ [['gas','ga','môi chất','moi chat','môi chất lạnh','moi chat lanh','gas lạnh','gas lanh','refrigerant'],['gas','ga','moi chat']],
+ [['ống mao','ong mao','cáp','ống cáp','ong cap','capillary','cáp tiết lưu'],['ong mao','cáp','capillary']],
+ [['cảm biến','cam bien','sensor','sen sơ','sen so','trở nhiệt','tro nhiet','thermistor','ntc'],['cam bien','sensor','thermistor','ntc']],
+ [['khởi động từ','khoi dong tu','contactor','công tắc tơ','cong tac to','khởi từ'],['khoi dong tu','contactor','cong tac to']],
+ [['rơ le nhiệt','ro le nhiet','olp','overload','bảo vệ nhiệt','tecmic','thermic'],['ro le nhiet','olp','overload','bao ve nhiet']],
+ [['rơ le','ro le','rơle','role','relay'],['ro le','role','relay']],
+ [['aptomat','áp tô mát','ap to mat','cb','cầu dao','cau dao','mcb'],['aptomat','cb','cau dao','mcb']],
+ [['điều hòa','dieu hoa','điều hoà','máy lạnh','may lanh'],['dieu hoa','may lanh']],
+ [['dàn nóng','dan nong','cục nóng','cuc nong','outdoor'],['dan nong','cuc nong','outdoor']],
+ [['dàn lạnh','dan lanh','cục lạnh','cuc lanh','indoor'],['dan lanh','cuc lanh','indoor']],
+ [['xì','xì gas','xi gas','rò gas','ro gas','rò rỉ','ro ri','leak','hở gas'],['xì','xi gas','ro ri','ro gas','leak']],
+ [['tụ','tụ điện','tu dien','capacitor','tụ ngậm','tu ngam'],['tụ','tu dien','capacitor']],
+ [['inverter','biến tần','bien tan','invecter','inveter'],['inverter','bien tan']],
+ [['mã lỗi','ma loi','error code','báo lỗi','bao loi'],['ma loi','bao loi','error']],
+ [['hút chân không','hut chan khong','vacuum','hút ck'],['hut chan khong','chan khong','vacuum']],
+ [['nạp gas','nap gas','nạp ga','nap ga','sạc gas','sac gas','bơm gas','bom gas'],['nap gas','nap ga']],
+ [['kém lạnh','kem lanh','lạnh yếu','lanh yeu','yếu lạnh','yeu lanh','lạnh không sâu','lanh khong sau'],['kem lanh','lanh yeu','lanh khong sau']],
+ [['không lạnh','khong lanh','mất lạnh','mat lanh'],['khong lanh','mat lanh']],
+ [['chảy nước','chay nuoc','rỉ nước','ri nuoc','rò nước','ro nuoc','nhỏ nước','nho nuoc'],['chay nuoc','ri nuoc','ro nuoc']],
+ [['dòng điện','dong dien','ampe','ampere','dòng làm việc','dong lam viec','rla'],['dòng','dong dien','ampe','rla']],
+ [['áp suất','ap suat','pressure','psi'],['ap suat','psi','bar','pressure']],
+ [['phin lọc','phin loc','phin','filter drier'],['phin']],
+ [['quạt','quat','fan'],['quat','fan']],
+ [['mô tơ','mo to','motor','động cơ','dong co'],['mo to','motor','dong co']],
+ [['board','bo mạch','bo mach','mạch điều khiển','mach dieu khien','pcb','bo mạch'],['board','bo mach','mach dieu khien','pcb']],
+ [['van 3 ngã','van 3 nga','van ba ngã','van ba nga','van 3 ngả','van lớn','van hút'],['van 3 nga','van ba nga']],
+ [['van 2 ngã','van 2 nga','van hai ngã','van hai nga','van nhỏ','van lỏng'],['van 2 nga','van hai nga']],
+ [['van đảo chiều','van dao chieu','van 4 ngã','van 4 nga','van bốn ngã','van bon nga','4 way'],['van dao chieu','van 4 nga','4 nga']],
+ [['thiếu gas','thieu gas','thiếu ga','thieu ga','hết gas','het gas','hao gas'],['thieu gas','thieu ga','het gas']],
+ [['đóng tuyết','dong tuyet','bám tuyết','bam tuyet','đóng đá','dong da','đóng băng','dong bang','bám đá','bam da'],['tuyet','dong da','dong bang','bam da']],
+ [['nitơ','nito','ni tơ','nitrogen','n2'],['nito','ni to','nitrogen','n2']]
+];
+const SYNK=[];SYN.forEach((g,gi)=>g[0].forEach(k=>SYNK.push({k:low(k.normalize('NFC')).trim().split(/\s+/),g:gi})));
+SYNK.sort((a,b)=>b.k.length-a.k.length);
+const ASCII=/^[\x00-\x7f]*$/;
+/* regex for a user word: tolerant to "1,5hp" ~ "1,5 HP", "9000" ~ "9.000", "R410A" ~ "R-410A" */
+function wordRe(w,whole){
+  const toks=fold(w).trim().split(/\s+/).filter(Boolean);if(!toks.length)return null;
+  const one=t=>t.replace(/\d+|[a-z]+/g,m=>{if(/\d/.test(m[0])&&m.length>3){const p=[];let s=m;while(s.length>3){p.unshift(s.slice(-3));s=s.slice(0,-3)}p.unshift(s);return p.join(' ?')}return m}).replace(/(\d)(?=[a-z])|([a-z])(?=\d)/g,'$1$2\\s*');
+  let body=one(toks[0]);
+  for(let i=1;i<toks.length;i++){const a=toks[i-1],b=toks[i];const mix=(/\d$/.test(a)&&/^[a-z]/.test(b))||(/[a-z]$/.test(a)&&/^\d/.test(b));body+=(mix?'\\s*':'\\s+')+one(b)}
+  return new RegExp('(^|[^a-z0-9])('+body+')'+(whole?'(?![a-z0-9])':''),'g');
+}
+function exactRe(w){
+  if(!UNI)return null;const s=low(w.normalize('NFC')).trim().split(/\s+/).filter(Boolean).map(reEsc).join('\\s+');if(!s)return null;
+  return new RegExp('(^|[^\\p{L}\\p{N}])('+s+')(?![\\p{L}\\p{N}])','gu');
+}
+/* query → concepts; every concept must be found (AND). A concept = several alternative patterns */
+function parse(q,strict){
+  q=String(q||'').normalize('NFC').trim().slice(0,120);
+  const raw0=q.split(/\s+/),words=[],rw=[];
+  raw0.forEach(w=>{const l=low(w).trim().replace(/\s+/g,' ');if(l){words.push(l);rw.push(w)}});
+  if(!words.length)return null;
+  const C=[];let i=0;
+  while(i<words.length){
+    let hit=null;
+    for(const s of SYNK){const n=s.k.length;if(i+n>words.length)continue;let ok=true;for(let j=0;j<n;j++)if(words[i+j]!==s.k[j]){ok=false;break}if(ok){hit=s;break}}
+    const last=hit?i+hit.k.length>=words.length:i===words.length-1;
+    const raw=hit?rw.slice(i,i+hit.k.length).join(' '):rw[i];
+    const alts=[];
+    if(hit)SYN[hit.g][1].forEach(a=>{const r=ASCII.test(a)?wordRe(a,true):exactRe(a);if(r)alts.push({r,x:!ASCII.test(a)})});
+    const xo=(!!hit||!!strict)&&!ASCII.test(raw);
+    const own=xo?exactRe(raw):wordRe(raw,!last&&!hit);if(own)alts.push({r:own,x:xo,own:1});
+    const ex=ASCII.test(raw)?null:exactRe(raw);
+    if(alts.length)C.push({raw,alts,ex,w:last&&!hit?wordRe(raw,true):null});
+    i+=hit?hit.k.length:1;
+  }
+  if(!C.length)return null;
+  return{q,C,all:words.length>1?exactRe(q)||null:null,allF:words.length>1?wordRe(rw.join(' '),false):null,first:wordRe(rw.join(' '),false)};
+}
+function test(re,s){re.lastIndex=0;return re.test(s)}
+function inField(c,f){for(const a of c.alts){if(test(a.r,a.x?L(f):f.n))return true}return false}
+/* ranges [start,end) of all matches in a field, used for <mark> */
+function ranges(P,f){
+  const out=[];if(!P)return out;
+  P.C.forEach(c=>{c.alts.forEach(a=>{const s=a.x?L(f):f.n;a.r.lastIndex=0;let m;while((m=a.r.exec(s))){const st=m.index+m[1].length;out.push([st,st+m[2].length]);if(!m[2].length)a.r.lastIndex++}})});
+  out.sort((a,b)=>a[0]-b[0]);const mg=[];out.forEach(r=>{const p=mg[mg.length-1];if(p&&r[0]<=p[1])p[1]=Math.max(p[1],r[1]);else mg.push(r.slice())});return mg;
+}
+function hl(f,P,from,to){
+  const t=f.t;from=from||0;to=to==null?t.length:to;const R=ranges(P,f);let o='',k=from;
+  R.forEach(r=>{if(r[1]<=from||r[0]>=to)return;const a=Math.max(r[0],from),b=Math.min(r[1],to);o+=esc(t.slice(k,a))+'<mark>'+esc(t.slice(a,b))+'</mark>';k=b});
+  return o+esc(t.slice(k,to));
+}
+function snip(f,P,max){
+  max=max||170;const t=f.t;if(t.length<=max)return hl(f,P);
+  const R=ranges(P,f);let s=R.length?Math.max(0,R[0][0]-50):0;
+  if(s>0){const sp=t.lastIndexOf(' ',s);s=sp>s-20?sp+1:s}
+  let e=Math.min(t.length,s+max);if(e<t.length){const sp=t.indexOf(' ',e);e=sp>0&&sp-e<20?sp:e}
+  return (s>0?'… ':'')+hl(f,P,s,e)+(e<t.length?' …':'');
+}
+function matchText(P,s){if(!P)return true;const f=fld(s);return P.C.every(c=>inField(c,f))}
+
+/* ================= SỔ TAY: DỮ LIỆU ================= */
+const GROUPK=['hien tuong','hang','quy trinh','nhom','loai'];
+function vt(t,i){
+  if(!t||typeof t!=='object')return null;
+  const S=x=>String(x==null?'':x).normalize('NFC').replace(/\r/g,'').trim();
+  let head=(Array.isArray(t.head)?t.head:[]).map(S);let n=head.length;while(n&&!head[n-1])n--;if(!n||n>12)return null;head=head.slice(0,n);
+  const rows=(Array.isArray(t.rows)?t.rows:[]).filter(Array.isArray).map(r=>{const o=[];for(let k=0;k<n;k++)o.push(S(r[k]));return o}).filter(r=>r.some(Boolean));
+  if(!rows.length)return null;
+  return{id:S(t.id)||('ST'+(i+1)),cat:S(t.cat)||'Khác',title:S(t.title)||S(t.id)||'Bảng',note:S(t.note),src:S(t.src),head,rows};
+}
+function validTables(a){if(!Array.isArray(a))return[];const o=[],seen={};a.forEach((t,i)=>{const v=vt(t,i);if(v&&!seen[v.id]){seen[v.id]=1;o.push(v)}});return o}
+function prep(T){
+  const fh=T.head.map(h=>fold(h).replace(/\s+/g,' ').trim());
+  T.stepCol=fh.findIndex(h=>h==='buoc'||h==='buoc so'||h==='stt buoc');
+  const g0=new Set(T.rows.map(r=>r[0]));
+  T.proc=T.stepCol>0&&g0.size<T.rows.length;
+  T.grouped=!T.proc&&GROUPK.some(k=>fh[0]===k||fh[0].indexOf(k+' ')===0)&&g0.size>1&&g0.size<T.rows.length;
+  T.hide=T.head.map((h,c)=>T.rows.length>2&&new Set(T.rows.map(r=>r[c])).size===1&&(c===0||!T.rows[0][c]));
+  if(T.grouped||T.proc)T.hide[0]=true;
+  T.vis=T.head.map((h,c)=>c).filter(c=>!T.hide[c]&&!(T.proc&&c===T.stepCol));
+  T.compact=T.vis.length>=4&&T.rows.every(r=>T.vis.every(c=>r[c].length<=16));
+  T.unit=T.grouped&&/nguyen nhan/.test(fh[1]||'')?'nguyên nhân':'dòng';
+  return T;
+}
+const CATS=[
+ {k:'hu hong',c:'#D63A28',i:'<path d="M14.7 6.3a4 4 0 00-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 005.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>'},
+ {k:'ma loi',c:'#E9821A',i:'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M7.5 8.5h3M7.5 11.5h2M13 8.5h3.5M13 11.5h3.5"/>'},
+ {k:'gas',c:'#1E6BD0',i:'<circle cx="12" cy="13" r="8"/><path d="M12 13l4.2-4.2M8 18h8M12 5V3"/>'},
+ {k:'can cap',c:'#B4652F',i:'<path d="M3 12h3c0-3 2-5 4.5-5S15 9 15 12s-2 4.5-4 4.5S7.5 15 7.5 12.5 9 9.5 11 9.5s2.5 1.2 2.5 2.7"/><path d="M15 12h6"/>'},
+ {k:'may nen',c:'#C2417A',i:'<ellipse cx="12" cy="6" rx="6" ry="2.5"/><path d="M6 6v11c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5V6"/><path d="M18 10h3M3 14h3"/>'},
+ {k:'lap dat',c:'#24935F',i:'<path d="M3 17L17 3l4 4L7 21H3z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/>'},
+ {k:'cam bien',c:'#B7860B',i:'<path d="M14 14.8V5a2 2 0 10-4 0v9.8a4 4 0 104 0z"/><path d="M12 9v7"/>'},
+ {k:'quy trinh',c:'#0E7C86',i:'<path d="M10 6h10M10 12h10M10 18h10"/><path d="M3.5 6l1.5 1.5L7.5 5M3.5 12l1.5 1.5 2.5-2.5M3.5 18l1.5 1.5 2.5-2.5"/>'},
+ {k:'quy doi',c:'#5B6B80',i:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h1M12 11h1M16 11h0M8 15h1M12 15h1M16 15v3"/>'}
+];
+const ICO_DEF={c:'#5B6B80',i:'<path d="M4 4.5A2.5 2.5 0 016.5 2H20v17H6.5A2.5 2.5 0 004 21.5z"/><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>'};
+const SV=(p,w)=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="'+(w||2)+'" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>';
+const I_SEARCH=SV('<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/>',2.2);
+const I_BOOK=SV(ICO_DEF.i,2.2);
+function catMeta(cat){const f=fold(cat);return CATS.find(x=>f.indexOf(x.k)>=0)||ICO_DEF}
+
+const BUILT=validTables((window.__SOTAY||{}).tables).map(prep);
+const SKEY='sotay_sheet';
+let HB={tables:BUILT,src:'file',t:0,err:false,busy:false};
+function setTables(list,src,t){HB.tables=list.map(prep);HB.src=src;HB.t=t||0;HB.err=false;IX.hb=null;if(root.classList.contains('on'))render(true);refreshSlideInfo()}
+(function(){const c=LS.get(SKEY,null);const v=c&&validTables(c.tables);if(v&&v.length)setTablesQuiet(v,'cache',c.t)})();
+function setTablesQuiet(v,src,t){HB.tables=v.map(prep);HB.src=src;HB.t=t||0}
+function cats(){const o=[];HB.tables.forEach(T=>{if(o.indexOf(T.cat)<0)o.push(T.cat)});return o}
+function tableById(id){return HB.tables.find(T=>T.id===id)}
+
+/* ---------- Google Sheet (cùng link với ngân hàng câu hỏi) ---------- */
+function sheetURL(){return String(window.MD19_EXAM_URL||'').trim()}
+function jsonp(params){
+  const U=sheetURL();if(!/^https:\/\//.test(U))return Promise.resolve(null);
+  return new Promise(res=>{
+    const cb='__md19st'+Date.now()+Math.floor(Math.random()*1000),sc=document.createElement('script');let done=false;
+    const t=setTimeout(()=>fin(null),20000);
+    function fin(v){if(done)return;done=true;clearTimeout(t);try{delete window[cb]}catch(e){window[cb]=undefined}sc.remove();res(v)}
+    window[cb]=d=>fin(d);sc.onerror=()=>fin(null);
+    sc.src=U+(U.indexOf('?')<0?'?':'&')+params+'&callback='+cb+'&t='+Date.now();
+    document.head.appendChild(sc);
+  });
+}
+function syncHB(fresh,report){
+  if(!sheetURL()){if(report)note('Chưa gắn link Google Sheet (dòng 8 của file) – đang dùng Sổ tay có sẵn trong file.');return Promise.resolve(false)}
+  if(HB.busy)return HB.busy;
+  if(report)note('Đang tải Sổ tay từ Google Sheet…');
+  HB.busy=jsonp('action=sotay'+(fresh?'&fresh=1':'')).then(d=>{
+    HB.busy=false;const v=d&&d.ok?validTables(d.tables):[];
+    if(!v.length){HB.err=true;renderSrc();if(report)note('Không tải được Sổ tay từ Google Sheet – đang dùng bản đã lưu. (Thầy/cô cần cập nhật Code.gs mới và triển khai lại.)');return false}
+    const now=Date.now();LS.set(SKEY,{t:now,v:String(d.v||''),tables:v});
+    setTables(v,'sheet',now);if(report)note('Đã cập nhật '+v.length+' bảng của Sổ tay từ Google Sheet.');return true;
+  });
+  return HB.busy;
+}
+/* the question-bank feed tells whether the Sheet has the handbook and when it last changed */
+document.addEventListener('md19feed',e=>{
+  const d=e.detail;if(!d||!d.ok||!d.st)return;
+  const c=LS.get(SKEY,null),ver=String(d.stv||'');
+  if(c&&ver&&c.v===ver&&Date.now()-(c.t||0)<864e5)return;
+  syncHB(false,false);
+});
+function fmtT(t){if(!t)return'';const d=new Date(t),p=n=>String(n).padStart(2,'0');return p(d.getHours())+':'+p(d.getMinutes())+' ngày '+p(d.getDate())+'/'+p(d.getMonth()+1)}
+function srcText(){
+  const n=HB.tables.length+' bảng, '+HB.tables.reduce((s,T)=>s+T.rows.length,0)+' dòng';
+  if(HB.src==='sheet')return 'Dữ liệu: '+n+' từ Google Sheet (cập nhật lúc '+fmtT(HB.t)+').';
+  if(HB.src==='cache')return 'Dữ liệu: '+n+' tải từ Google Sheet lúc '+fmtT(HB.t)+(HB.err?' – lần này chưa kết nối được.':'.');
+  return 'Dữ liệu: '+n+' có sẵn trong file'+(sheetURL()?(HB.err?' – chưa kết nối được Google Sheet.':'.'):'.');
+}
+
+/* ================= SỔ TAY: GIAO DIỆN ================= */
+const root=document.createElement('div');root.id='sotay';root.setAttribute('role','dialog');root.setAttribute('aria-label','Sổ tay sửa chữa điều hòa');document.body.appendChild(root);
+let view={cat:''};const FILT={};let noteMsg='';
+function note(m){noteMsg=m;const e=$('.sx-srcmsg',root);if(e)e.textContent=m;if(!root.classList.contains('on'))toast(m)}
+function renderSrc(){const e=$('.sx-srcinfo',root);if(e)e.textContent=srcText()}
+function openHB(target){
+  closeSearch();
+  root.classList.add('on');HTML.classList.add('st-open');
+  if(target&&target.t){const T=tableById(target.t);view.cat=T?T.cat:'';if(T&&FILT[T.id]){FILT[T.id]='';T._open={}}}else if(target&&target.cat!=null)view.cat=target.cat;
+  render();root.scrollTop=0;
+  if(target&&target.t)setTimeout(()=>focusTarget(target),40);
+}
+function blurIn(el){const a=document.activeElement;if(a&&el.contains(a)&&a.blur)a.blur()}
+function closeHB(){blurIn(root);root.classList.remove('on');HTML.classList.remove('st-open')}
+function head(){
+  const cs=cats();
+  let h='<div class="sx-top"><div class="sx-h"><button class="sx-x" data-x="'+(view.cat?'home':'close')+'" aria-label="'+(view.cat?'Về trang đầu Sổ tay':'Đóng Sổ tay')+'">'+(view.cat?'‹':'✕')+'</button>'+
+    '<div class="sx-ht"><b>Sổ tay bảo dưỡng, sửa chữa điều hòa dân dụng</b><small>'+AUTHOR+'</small></div>'+
+    '<button class="sx-hb" data-x="find" aria-label="Tìm trong Sổ tay">'+I_SEARCH+'<span>Tìm</span></button></div>';
+  h+='<nav class="sx-cats" aria-label="Chuyên mục"><button data-cat="" class="'+(view.cat?'':'on')+'" style="--c:#13233A">'+I_BOOK+'Tổng quan</button>';
+  cs.forEach(c=>{const m=catMeta(c);h+='<button data-cat="'+esc(c)+'" class="'+(view.cat===c?'on':'')+'" style="--c:'+m.c+'">'+SV(m.i)+esc(c)+'</button>'});
+  return h+'</nav></div>';
+}
+const QUICK=[
+ ['Máy kém lạnh','ST01','máy kém lạnh'],['Không lên nguồn','ST01','máy không lên nguồn'],['Dàn lạnh chảy nước','ST01','dàn lạnh chảy nước'],['Bám tuyết','ST01','dàn lạnh bám tuyết'],
+ ['Mã lỗi Daikin','ST02'],['Mã lỗi Panasonic','ST03'],['Mã lỗi LG','ST04'],['Mã lỗi Samsung','ST05'],
+ ['Áp suất gas chuẩn','ST07'],['Bảng P–T','ST08'],['Giá trị cân cáp','ST11'],['Dòng máy nén, tụ, CB','ST12'],
+ ['Hút chân không','ST21','hút chân không'],['Kiểm tra máy nén','ST21','kiểm tra máy nén còn'],['Quy trình cân cáp','ST21','cân cáp'],['Nạp gas R32','ST21','nạp gas r32'],['Trị số cảm biến','ST20']
+];
+function groupFind(T,g){if(!T||!g)return null;const f=fold(g).trim();const gs=[];T.rows.forEach(r=>{if(gs.indexOf(r[0])<0)gs.push(r[0])});return gs.find(x=>fold(x).trim().indexOf(f)===0)||null}
+function overview(){
+  const cs=cats();let rows=0;HB.tables.forEach(T=>rows+=T.rows.length);
+  let h='<section class="sx-hero"><span class="sx-tag">'+HB.tables.length+' bảng · '+rows+' dòng tra cứu</span><h2>Xem nhanh lỗi, mã lỗi, thông số và quy trình</h2>'+
+    '<p>Hiện tượng – nguyên nhân – cách khắc phục, mã lỗi các hãng, áp suất nạp gas, giá trị cân cáp, dòng điện và công suất máy nén, các quy trình hút chân không, nạp gas, kiểm tra máy nén… Dùng khi học thực hành và khi đi sửa máy.</p>'+
+    '<button class="sx-sbtn" data-x="find">'+I_SEARCH+'<span>Tìm: kém lạnh, E5, R32, hút chân không, tụ 1,5 HP…</span></button><div class="sx-quick">';
+  QUICK.forEach(q=>{const T=tableById(q[1]);if(!T)return;let g='';if(q[2]){g=groupFind(T,q[2]);if(!g)return}h+='<button data-go="'+q[1]+'"'+(g?' data-g="'+esc(g)+'"':'')+'>'+esc(q[0])+'</button>'});
+  h+='</div></section><div class="sx-grid">';
+  cs.forEach(c=>{const m=catMeta(c);const ts=HB.tables.filter(T=>T.cat===c);
+    h+='<div class="sx-tile" style="--c:'+m.c+'"><button class="sx-tl" data-cat="'+esc(c)+'"><span class="sx-ico">'+SV(m.i)+'</span><span class="sx-tt"><b>'+esc(c)+'</b><em>'+csize(ts)+'</em></span></button><ul>';
+    ts.forEach(T=>{h+='<li><button data-go="'+esc(T.id)+'">'+esc(T.title)+'</button></li>'});
+    h+='</ul></div>'});
+  return h+'</div>';
+}
+function catView(c){
+  const m=catMeta(c);const ts=HB.tables.filter(T=>T.cat===c);
+  let h='<div class="sx-ct" style="--c:'+m.c+'"><span class="sx-ico">'+SV(m.i)+'</span><div><h2>'+esc(c)+'</h2><p>'+csize(ts)+'</p></div></div>';
+  if(ts.length>1){h+='<div class="sx-toc">';ts.forEach(T=>h+='<button data-jump="'+esc(T.id)+'">'+esc(T.title)+'</button>');h+='</div>'}
+  ts.forEach(T=>{h+=card(T,m.c)});
+  return h;
+}
+function card(T,color){
+  const many=T.grouped||T.proc;
+  let h='<section class="sx-card" id="sx-'+esc(T.id)+'" data-t="'+esc(T.id)+'" style="--c:'+color+'"><div class="sx-ch"><h3>'+esc(T.title)+'</h3><span class="sx-id">'+esc(T.id)+'</span></div>';
+  if(T.note)h+='<div class="sx-note">'+esc(T.note)+'</div>';
+  if(T.rows.length>4)h+='<div class="sx-tools"><label class="sx-f">'+I_SEARCH+'<input type="search" data-f="'+esc(T.id)+'" placeholder="Lọc trong bảng này…" value="'+esc(FILT[T.id]||'')+'" autocomplete="off" spellcheck="false" enterkeyhint="search"></label>'+
+    (many?'<button class="sx-tb2" data-x="all" data-t="'+esc(T.id)+'">Mở tất cả</button>':'')+'<span class="sx-cnt" data-cnt="'+esc(T.id)+'"></span></div>';
+  h+='<div class="sx-body" data-tb="'+esc(T.id)+'">'+body(T)+'</div>';
+  if(T.src)h+='<p class="sx-src"><b>Nguồn:</b> '+esc(T.src)+'</p>';
+  return h+'</section>';
+}
+function cellHTML(s,P){return s?hl(fld(s),P).replace(/\n/g,'<br>'):''}
+function tableHTML(T,idx,P,showHead){
+  const cols=T.vis;
+  let h='<div class="sx-tw'+(T.compact?' cp':'')+'"><table class="sx-t'+(T.compact?' cp':'')+'">';
+  if(showHead!==false)h+='<thead><tr>'+cols.map(c=>'<th>'+esc(T.head[c])+'</th>').join('')+'</tr></thead>';
+  h+='<tbody>';
+  idx.forEach(ri=>{const r=T.rows[ri];h+='<tr data-r="'+esc(T.id)+':'+ri+'">'+cols.map(c=>'<td data-l="'+esc(T.head[c])+'">'+cellHTML(r[c],P)+'</td>').join('')+'</tr>'});
+  return h+'</tbody></table></div>';
+}
+function body(T){
+  const q=FILT[T.id]||'';let P=parse(q,true);
+  const rowOk=ri=>!P||matchText(P,T.rows[ri].join(' · '));
+  if(P&&!ASCII.test(q)&&!T.rows.some((r,ri)=>rowOk(ri)))P=parse(q,false);
+  let shown=0,h='';
+  if(T.grouped||T.proc){
+    const G=[],by={};T.rows.forEach((r,ri)=>{if(!by[r[0]]){by[r[0]]=[];G.push(r[0])}by[r[0]].push(ri)});
+    const openAll=!P&&T.rows.length<=20;
+    G.forEach((g,gi)=>{
+      let idx=by[g];
+      if(P){const m=idx.filter(rowOk);if(!m.length)return;idx=m}
+      shown+=idx.length;
+      const open=openAll||!!P||(T._open&&T._open[g]);
+      h+='<details class="sx-acc" data-g="'+esc(g)+'"'+(open?' open':'')+'><summary><span class="sx-n">'+(gi+1)+'</span><b>'+cellHTML(g,P)+'</b><em>'+by[g].length+' '+(T.proc?'bước':T.unit)+'</em></summary><div class="sx-in">';
+      if(T.proc){
+        const cc=T.vis.length?T.vis[0]:1, extra=T.vis.slice(1);
+        h+='<ol class="sx-steps">';
+        idx.forEach(ri=>{const r=T.rows[ri];h+='<li data-r="'+esc(T.id)+':'+ri+'"><span class="sx-sn">'+esc(r[T.stepCol]||'•')+'</span><div class="sx-sc">'+cellHTML(r[cc],P)+
+          extra.filter(c=>r[c]).map(c=>'<div class="sx-w'+(/luu y|chu y|canh bao/.test(fold(T.head[c]))?'':' i')+'"><b>'+esc(T.head[c])+':</b> '+cellHTML(r[c],P)+'</div>').join('')+'</div></li>'});
+        h+='</ol>';
+      }else h+=tableHTML(T,idx,P,true);
+      h+='</div></details>';
+    });
+  }else{
+    const idx=T.rows.map((r,ri)=>ri).filter(rowOk);shown=idx.length;
+    if(idx.length)h=tableHTML(T,idx,P,true);
+  }
+  if(!h)h='<p class="sx-none">Không có dòng nào khớp với “'+esc(q)+'”.</p>';
+  T._shown=shown;
+  return h;
+}
+function groupsOf(T){const g=new Set();T.rows.forEach(r=>g.add(r[0]));return g.size}
+function tsize(T){return T.proc?groupsOf(T)+' quy trình · '+T.rows.length+' bước':T.grouped&&T.unit!=='dòng'?groupsOf(T)+' hiện tượng · '+T.rows.length+' '+T.unit:T.rows.length+' dòng'}
+function csize(ts){if(ts.length===1)return tsize(ts[0]);let n=0;ts.forEach(T=>n+=T.rows.length);return ts.length+' bảng · '+n+' dòng'}
+function counts(){$$('[data-cnt]',root).forEach(e=>{const T=tableById(e.dataset.cnt);if(!T)return;e.textContent=FILT[T.id]?(T._shown+' / '+T.rows.length+(T.proc?' bước':' dòng')):tsize(T)})}
+function render(keep){
+  const st=keep?root.scrollTop:0;
+  if(view.cat&&cats().indexOf(view.cat)<0)view.cat='';
+  let h=head()+'<div class="sx-b">'+(view.cat?catView(view.cat):overview());
+  h+='<div class="sx-foot"><span class="sx-srcinfo">'+esc(srcText())+'</span>'+(sheetURL()?'<button data-x="sync">Cập nhật từ Google Sheet</button>':'')+'<span class="sx-srcmsg">'+esc(noteMsg)+'</span><small>'+AUTHOR+' · Số liệu mang tính tham khảo – luôn ưu tiên tem máy và tài liệu của hãng.</small></div></div>';
+  root.innerHTML=h;counts();
+  const on=$('.sx-cats button.on',root);if(on&&on.scrollIntoView)try{on.scrollIntoView({block:'nearest',inline:'center'})}catch(e){}
+  root.scrollTop=st;
+}
+function rerenderTable(id){
+  const T=tableById(id),box=$('[data-tb="'+CSS.escape(id)+'"]',root);if(!T||!box)return;
+  T._open={};$$('details[open]',box).forEach(d=>T._open[d.dataset.g]=1);
+  box.innerHTML=body(T);counts();
+}
+function focusTarget(tg){
+  const T=tableById(tg.t);if(!T)return;
+  const sec=$('#sx-'+CSS.escape(T.id),root);if(!sec)return;
+  let el=null;
+  if(tg.r!=null)el=$('[data-r="'+CSS.escape(T.id+':'+tg.r)+'"]',sec);
+  if(!el&&tg.g){el=$$('details',sec).find(d=>d.dataset.g===tg.g)||null}
+  if(el){const d=el.tagName==='DETAILS'?el:el.closest('details');if(d)d.open=true}
+  const tgt=el||sec;
+  try{tgt.scrollIntoView({block:el&&el.tagName!=='DETAILS'?'center':'start'})}catch(e){tgt.scrollIntoView()}
+  const fx=el&&el.tagName==='DETAILS'?$('summary',el):(el||$('h3',sec));
+  if(fx){fx.classList.remove('hit');void fx.offsetWidth;fx.classList.add('hit');setTimeout(()=>fx.classList.remove('hit'),3000)}
+}
+root.addEventListener('click',e=>{
+  const x=e.target.closest('[data-x]');
+  if(x){const a=x.dataset.x;
+    if(a==='close')closeHB();
+    else if(a==='home'){view.cat='';render()}
+    else if(a==='find')openSearch('hb');
+    else if(a==='sync'){x.disabled=true;syncHB(true,true).then(()=>{const b=$('[data-x=sync]',root);if(b)b.disabled=false})}
+    else if(a==='all'){const box=$('[data-tb="'+CSS.escape(x.dataset.t)+'"]',root);if(box){const ds=$$('details',box);const op=ds.some(d=>!d.open);ds.forEach(d=>d.open=op);x.textContent=op?'Thu gọn':'Mở tất cả'}}
+    return;
+  }
+  const c=e.target.closest('[data-cat]');if(c){view.cat=c.dataset.cat;render();return}
+  const g=e.target.closest('[data-go]');if(g){openHB({t:g.dataset.go,g:g.dataset.g||null});return}
+  const j=e.target.closest('[data-jump]');if(j){focusTarget({t:j.dataset.jump});return}
+});
+let ft=0;
+root.addEventListener('input',e=>{const i=e.target.closest('[data-f]');if(!i)return;FILT[i.dataset.f]=i.value;clearTimeout(ft);ft=setTimeout(()=>rerenderTable(i.dataset.f),120)});
+
+/* ================= TÌM KIẾM ================= */
+const IX={sl:null,slT:0,hb:null};
+const SKIP='.sh,.quiz,.mlegend,.mstep,.mzb,script,style,.info,.btn,.btns,.qz,.mn-acts,#mtop,#mnav';
+const BLOCK='h1,h2,h3,h4,h5,h6,p,li,td,th,figcaption,dt,dd,label,button,text,blockquote,div,section';
+function buildSlides(){
+  const D=deck();if(!D)return[];
+  const out=[];
+  D.slides.forEach((sl,i)=>{
+    const segs=[],map=new Map();
+    const w=document.createTreeWalker(sl,NodeFilter.SHOW_TEXT);let n;
+    while((n=w.nextNode())){
+      const t=n.nodeValue;if(!t||!/\S/.test(t))continue;
+      const p=n.parentElement;if(!p||p.closest(SKIP))continue;
+      const b=p.closest(BLOCK)||p;let s=map.get(b);if(!s){s={el:b,t:''};map.set(b,s);segs.push(s)}
+      s.t+=t;
+    }
+    const S=[];segs.forEach(s=>{const t=s.t.replace(/\s+/g,' ').trim();if(t.length>1)S.push(Object.assign(fld(t),{el:s.el}))});
+    const st=sl.querySelector('.st');
+    const title=fld((sl.dataset.title||'')+(st&&st.textContent.trim()!==sl.dataset.title?' — '+st.textContent.trim():''));
+    out.push({k:'sl',i,title,crumb:fld(sl.dataset.group||''),segs:S,body:fld(S.map(s=>s.t).join(' · '))});
+  });
+  return out;
+}
+function buildHB(){
+  const out=[];
+  HB.tables.forEach(T=>{
+    const crumb=fld(T.cat+' › '+T.title);
+    if(T.proc){
+      const by={},G=[];T.rows.forEach((r,ri)=>{if(!by[r[0]]){by[r[0]]=[];G.push(r[0])}by[r[0]].push(ri)});
+      G.forEach(g=>{const segs=by[g].map(ri=>{const r=T.rows[ri];const f=fld('Bước '+(r[T.stepCol]||'')+': '+T.vis.map(c=>r[c]).filter(Boolean).join(' – '));f.ri=ri;return f});
+        out.push({k:'hb',t:T.id,g,title:fld(g),crumb,segs,body:fld(segs.map(s=>s.t).join(' · ')),cat:T.cat})});
+    }else if(T.grouped){
+      const by={},G=[];T.rows.forEach((r,ri)=>{if(!by[r[0]]){by[r[0]]=[];G.push(r[0])}by[r[0]].push(ri)});
+      const h0=T.vis[0];
+      G.forEach(g=>{
+        const segs=by[g].map(ri=>{const r=T.rows[ri];const f=fld(T.vis.filter(c=>r[c]).map((c,k)=>k?T.head[c]+': '+r[c]:r[c]).join(' → '));f.ri=ri;return f});
+        const list=fld(T.head[h0]+' ('+by[g].length+'): '+by[g].map(ri=>T.rows[ri][h0]).join(' · '));
+        out.push({k:'hb',t:T.id,g,title:fld(g),crumb,head:fld(T.head.join(' ')),segs,list,body:fld(segs.map(x=>x.t).join(' · ')),cat:T.cat});
+      });
+    }else{
+      const hcol=T.vis[0]!=null?T.vis[0]:0;
+      T.rows.forEach((r,ri)=>{
+        const rest=T.vis.filter(c=>c!==hcol).filter(c=>r[c]).map(c=>T.head[c]+': '+r[c]);
+        const seg=fld(rest.join(' · '));seg.ri=ri;
+        out.push({k:'hb',t:T.id,r:ri,title:fld(r[hcol]),crumb,head:fld(T.head.join(' ')),segs:[seg],body:seg,cat:T.cat});
+      });
+    }
+  });
+  return out;
+}
+function index(){
+  if(!IX.sl||(IX.slT<8000&&performance.now()-IX.slT>3000)){IX.sl=buildSlides();IX.slT=performance.now()}
+  if(!IX.hb)IX.hb=buildHB();
+}
+function score(P,d){
+  let s=0;
+  for(const c of P.C){
+    let b=0;
+    if(inField(c,d.title))b=8;else if(inField(c,d.crumb)||(d.head&&inField(c,d.head)))b=3;else if(inField(c,d.body))b=1;
+    if(!b)return 0;
+    s+=b;if(c.ex&&(test(c.ex,L(d.title))||test(c.ex,L(d.body))))s+=2;
+    if(c.w&&(test(c.w,d.title.n)||test(c.w,d.body.n)))s+=2;
+  }
+  if(P.allF){if(test(P.allF,d.title.n))s+=8;else if(test(P.allF,d.body.n))s+=3}
+  if(P.first){P.first.lastIndex=0;const m=P.first.exec(d.title.n);if(m&&!d.title.n.slice(0,m.index+m[1].length).trim())s+=3}
+  if(P.all&&(test(P.all,L(d.title))||test(P.all,L(d.body))))s+=3;
+  if(d.k==='hb')s+=0.5;
+  return s;
+}
+function bestSeg(P,d){
+  let best=null,bs=0;
+  d.segs.forEach((g,k)=>{let n=0;P.C.forEach(c=>{if(inField(c,g))n++});const v=n*10+(g.el&&g.el.classList&&g.el.classList.contains('st')?0:1)-k*0.0001;if(n&&v>bs){bs=v;best=g}});
+  return best;
+}
+function search(q){
+  /* words typed with accents must match with accents; if that finds nothing, accents are ignored */
+  let P=parse(q,true);if(!P)return{P:null,res:[]};
+  index();let res=[];
+  const runP=()=>{res=[];[IX.hb,IX.sl].forEach(list=>list.forEach(d=>{const s=score(P,d);if(s>0)res.push({d,s})}))};
+  runP();if(!res.length&&!ASCII.test(q)){P=parse(q,false);runP()}
+  res.sort((a,b)=>b.s-a.s||(a.d.k===b.d.k?(a.d.k==='sl'?a.d.i-b.d.i:0):(a.d.k==='hb'?-1:1)));
+  return{P,res};
+}
+
+const sr=document.createElement('div');sr.id='srch';sr.setAttribute('role','dialog');sr.setAttribute('aria-label','Tìm kiếm nhanh');
+sr.innerHTML='<div class="sr-p"><div class="sr-top">'+I_SEARCH+'<input type="search" placeholder="Tìm trong bài giảng và Sổ tay…" aria-label="Nội dung cần tìm" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search"><button class="sr-clr" aria-label="Xóa">✕</button><button class="sr-close">Đóng</button></div>'+
+  '<div class="sr-scope" role="tablist"><button data-sc="all">Tất cả<i></i></button><button data-sc="hb">Sổ tay<i></i></button><button data-sc="sl">Bài giảng<i></i></button></div>'+
+  '<div class="sr-list" role="listbox"></div><div class="sr-foot"><span><b>↑ ↓</b> chọn</span><span><b>Enter</b> mở</span><span><b>Esc</b> đóng</span><span style="margin-left:auto">Gõ không dấu cũng được · '+esc(AUTHOR)+'</span></div></div>';
+document.body.appendChild(sr);
+const inp=$('input',sr),list=$('.sr-list',sr);
+let scope='all',R={P:null,res:[]},sel=0,limit=40,st=0;
+function openSearch(sc,q){
+  scope=sc||'all';sr.classList.add('on');HTML.classList.add('sr-open');
+  if(q!=null)inp.value=q;
+  run();setTimeout(()=>{try{inp.focus({preventScroll:true});inp.select()}catch(e){}},30);
+}
+function closeSearch(){blurIn(sr);sr.classList.remove('on');HTML.classList.remove('sr-open')}
+const SUGG=['kém lạnh','chảy nước','mã lỗi E5','H11','CH05','áp suất R32','hút chân không','cân cáp','tụ máy nén 1,5 HP','dòng máy nén','cảm biến Daikin','C – R – S','bẫy dầu','nạp gas R410A','van đảo chiều'];
+function run(){
+  const q=inp.value.trim();$('.sr-clr',sr).style.visibility=q?'visible':'hidden';
+  $$('[data-sc]',sr).forEach(b=>b.classList.toggle('on',b.dataset.sc===scope));
+  if(!q){R={P:null,res:[]};$$('[data-sc] i',sr).forEach(i=>i.textContent='');empty();return}
+  R=search(q);sel=0;limit=40;
+  const n={all:R.res.length,hb:R.res.filter(x=>x.d.k==='hb').length,sl:R.res.filter(x=>x.d.k==='sl').length};
+  $$('[data-sc]',sr).forEach(b=>$('i',b).textContent=n[b.dataset.sc]);
+  draw();
+}
+function shown(){return scope==='all'?R.res:R.res.filter(x=>x.d.k===scope)}
+function empty(){
+  const rec=LS.get('srch_recent',[]);
+  let h='<div class="sr-empty">';
+  if(rec.length)h+='<h4>Tìm gần đây</h4><div class="sr-chips">'+rec.map(r=>'<button data-q="'+esc(r)+'">'+esc(r)+'</button>').join('')+'</div>';
+  h+='<h4>Gợi ý</h4><div class="sr-chips">'+SUGG.map(r=>'<button data-q="'+esc(r)+'">'+esc(r)+'</button>').join('')+'</div>';
+  h+='<button class="sr-book" data-book="1">'+I_BOOK+'<span><b>Mở Sổ tay sửa chữa điều hòa</b><small>Bảng lỗi – nguyên nhân – khắc phục, mã lỗi, áp suất gas, cân cáp, máy nén, quy trình</small></span></button>';
+  list.innerHTML=h+'</div>';
+}
+function draw(){
+  const S=shown();
+  if(!S.length){list.innerHTML='<div class="sr-empty"><p class="sr-no">Không tìm thấy “<b>'+esc(inp.value.trim())+'</b>”'+(scope!=='all'&&R.res.length?' trong mục này – xem ở <button class="sr-lk" data-sc2="all">Tất cả</button>':'')+'.</p><p class="sr-tip">Thử từ ngắn hơn hoặc từ khác: “máy nén” thay cho “block”, “E5” thay cho “lỗi E5 Daikin”… Gõ có dấu hay không dấu đều được.</p></div>';return}
+  let h='';
+  S.slice(0,limit).forEach((x,k)=>{
+    const d=x.d,P=R.P,g=bestSeg(P,d)||d.list||d.segs[0];
+    const kind=d.k==='sl'?'<span class="sr-k sl">Slide '+(d.i+1)+'</span>':'<span class="sr-k hb">Sổ tay</span>';
+    h+='<button class="sr-it'+(k===sel?' sel':'')+'" data-k="'+k+'" role="option">'+kind+'<b>'+hl(d.title,P)+'</b><span class="sr-c">'+esc(d.crumb.t)+'</span>'+(g&&g.t!==d.title.t?'<span class="sr-s">'+snip(g,P,d.k==='hb'?240:170)+'</span>':'')+'</button>';
+  });
+  if(S.length>limit)h+='<button class="sr-more" data-more="1">Xem thêm '+(S.length-limit)+' kết quả</button>';
+  list.innerHTML=h;
+}
+function pick(k){
+  const x=shown()[k];if(!x)return;
+  const q=inp.value.trim();if(q){let rec=LS.get('srch_recent',[]).filter(r=>r.toLowerCase()!==q.toLowerCase());rec.unshift(q);LS.set('srch_recent',rec.slice(0,8))}
+  const d=x.d;
+  if(d.k==='hb'){const g=bestSeg(R.P,d);openHB({t:d.t,r:d.r!=null?d.r:(g?g.ri:null),g:d.g});return}
+  closeSearch();closeHB();
+  const D=deck();if(!D)return;const sl=D.slides[d.i];const ttl=R.P.C.every(c=>inField(c,d.title));const seg=ttl?{el:sl.querySelector('.st')}:bestSeg(R.P,d);
+  const same=D.cur===d.i;if(!same)D.go(d.i);
+  setTimeout(()=>reveal(sl,seg&&seg.el),same?20:140);
+}
+/* show the matched text on the slide: open its tab, flip card, info panel or step, then flash it */
+function reveal(sl,el){
+  if(!el||!sl||!sl.contains(el))return;
+  let tgt=el;
+  const hid=el.closest('[hidden][id]');
+  if(hid){const h=sl.querySelector('[data-info="'+CSS.escape(hid.id)+'"]');if(!h)return;h.dispatchEvent(new MouseEvent('click',{bubbles:true}));tgt=sl.querySelector('.info')||h}
+  const pane=tgt.closest('.pane');
+  if(pane&&!pane.classList.contains('on')){const par=pane.parentElement;const ps=Array.from(par.children).filter(c=>c.classList.contains('pane'));const tb=Array.from(par.children).find(c=>c.classList.contains('tabs'));const b=tb&&tb.querySelectorAll('button')[ps.indexOf(pane)];if(b)b.click()}
+  const fl=tgt.closest('.flip');if(fl&&tgt.closest('.bc'))fl.classList.add('on');
+  if(window.__setStep){const p=tgt.closest('[data-p]');if(p&&sl.contains(p))window.__setStep(sl,+p.dataset.p);else{const s=tgt.closest('[data-step]');if(s&&!s.classList.contains('shown'))window.__setStep(sl,Math.max(sl._step||0,+s.dataset.step))}}
+  if(tgt.closest('[hidden]'))return;
+  const svg=tgt instanceof SVGElement&&tgt.tagName.toLowerCase()!=='svg';
+  const cls=svg?'sr-hit-svg':'sr-hit';
+  tgt.classList.remove(cls);void tgt.getBoundingClientRect();tgt.classList.add(cls);setTimeout(()=>tgt.classList.remove(cls),2800);
+  if(HTML.classList.contains('m'))setTimeout(()=>{try{tgt.scrollIntoView({block:'center',behavior:'smooth'})}catch(e){}},60);
+}
+inp.addEventListener('input',()=>{clearTimeout(st);st=setTimeout(run,90)});
+sr.addEventListener('click',e=>{
+  if(e.target===sr||e.target.closest('.sr-close')){closeSearch();return}
+  if(e.target.closest('.sr-clr')){inp.value='';run();inp.focus();return}
+  const sc=e.target.closest('[data-sc],[data-sc2]');if(sc){scope=sc.dataset.sc||sc.dataset.sc2;sel=0;limit=40;run();return}
+  const q=e.target.closest('[data-q]');if(q){inp.value=q.dataset.q;run();return}
+  if(e.target.closest('[data-book]')){openHB();return}
+  if(e.target.closest('[data-more]')){limit+=40;draw();return}
+  const it=e.target.closest('[data-k]');if(it)pick(+it.dataset.k);
+});
+function moveSel(d){const S=shown();if(!S.length)return;sel=Math.max(0,Math.min(Math.min(S.length,limit)-1,sel+d));$$('.sr-it',list).forEach((b,k)=>b.classList.toggle('sel',k===sel));const b=$('.sr-it.sel',list);if(b)b.scrollIntoView({block:'nearest'})}
+
+/* keys: K or / = tìm kiếm, N = Sổ tay. While a panel is open it gets the keys, not the slides. */
+window.addEventListener('keydown',e=>{
+  if(sr.classList.contains('on')){
+    e.stopPropagation();
+    if(e.key==='Escape'){e.preventDefault();closeSearch();return}
+    if(e.key==='ArrowDown'){e.preventDefault();moveSel(1)}else if(e.key==='ArrowUp'){e.preventDefault();moveSel(-1)}
+    else if(e.key==='Enter'&&e.target===inp){e.preventDefault();if(shown().length)pick(sel)}
+    return;
+  }
+  if(root.classList.contains('on')){
+    e.stopPropagation();
+    if(e.key==='Escape'){e.preventDefault();const i=e.target.closest&&e.target.closest('[data-f]');if(i&&i.value){i.value='';FILT[i.dataset.f]='';rerenderTable(i.dataset.f)}else closeHB()}
+    else if((e.key==='/'||e.key==='k'||e.key==='K')&&!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)&&!e.ctrlKey&&!e.metaKey){e.preventDefault();openSearch('hb')}
+    return;
+  }
+  const tg=e.target.tagName;if(tg==='INPUT'||tg==='TEXTAREA'||tg==='SELECT'||e.ctrlKey||e.metaKey||e.altKey)return;
+  if($$('.ov.on').length||($('#prac')&&$('#prac').classList.contains('on')))return;
+  if(e.key==='/'||e.key==='k'||e.key==='K'){e.preventDefault();e.stopPropagation();openSearch()}
+  else if(e.key==='n'||e.key==='N'){e.preventDefault();e.stopPropagation();openHB()}
+},true);
+
+/* ---------- entry points ---------- */
+$$('#bar [data-x]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();if(b.dataset.x==='find')openSearch();else openHB()}));
+const mf=$('#m-find'),mb=$('#m-book');if(mf)mf.addEventListener('click',()=>openSearch());if(mb)mb.addEventListener('click',()=>openHB());
+function refreshSlideInfo(){
+  $$('[data-stn]').forEach(e=>{const k=e.dataset.stn;let v='';if(k==='t')v=HB.tables.length;else if(k==='r')v=HB.tables.reduce((s,T)=>s+T.rows.length,0);else{const ts=HB.tables.filter(T=>fold(T.cat).indexOf(k)>=0);v=ts.reduce((s,T)=>s+T.rows.length,0)}e.textContent=v});
+}
+refreshSlideInfo();
+window.__sotay=openHB;window.__search=openSearch;window.__sotayData=()=>HB;
 })();
 </script>
 </body></html>
